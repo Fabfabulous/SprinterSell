@@ -1,38 +1,70 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+<nav class="sidebar close">
+    <header>
+      <div class="image-text">
+        <span class="image">
+          <%= image_tag 'logo.png', alt: 'icon' %>
+        </span>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        <div class="text logo-text">
+          <span class="name">Rémi Lavigne</span>
+          <span class="profession">Sales rep </span>
+        </div>
+      </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+      <div class="menu">
+
+        <ul class="menu-links">
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-home-alt icon'></i>
+
+              <span class="text nav-text">Home</span>
+            </a>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+
+          <li class="nav-link">
+            <a href="#">
+              <i class='bx bx-bar-chart-alt-2 icon'></i>
+              <span class="text nav-text">Map</span>
+            </a>
           </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
+
+        </ul>
+      </div>
+
+      <div class="bottom-content">
+        <li class="">
+          <a href="#">
+            <i class='bx bx-log-out icon'></i>
+            <span class="text nav-text">Logout</span>
           </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
+        </li>
+
+          <div class="toggle-switch">
+            <span class="switch"></span>
+          </div>
+        </li>
+
+      </div>
     </div>
-  </div>
-</div>
+
+  </nav>
+
+  <script>
+    const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+    toggle.addEventListener("click", () => {
+      sidebar.classList.toggle("close");
+    })
+    searchBtn.addEventListener("click", () => {
+      sidebar.classList.remove("close");
+    })
+  </script>
