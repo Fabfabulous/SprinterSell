@@ -22,12 +22,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_111338) do
     t.float "latitude"
     t.float "longitude"
     t.integer "status"
-    t.bigint "user_id", null: false
     t.integer "company_size"
     t.string "code_naf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -73,7 +71,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_111338) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "companies", "users"
   add_foreign_key "contacts", "companies"
   add_foreign_key "meetings", "contacts"
   add_foreign_key "meetings", "users"
