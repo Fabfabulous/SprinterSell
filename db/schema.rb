@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_083405) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_28_111338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_083405) do
     t.bigint "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "content"
     t.index ["contact_id"], name: "index_meetings_on_contact_id"
     t.index ["user_id"], name: "index_meetings_on_user_id"
   end
