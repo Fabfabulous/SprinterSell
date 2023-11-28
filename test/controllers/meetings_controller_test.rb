@@ -1,6 +1,6 @@
 require "test_helper"
 
-class TitleTest < ActiveSupport::TestCase
+class MeetingsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
