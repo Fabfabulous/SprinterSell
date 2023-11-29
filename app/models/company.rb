@@ -1,6 +1,6 @@
 class Company < ApplicationRecord
   has_many :contacts
-  enum status: [ :prospect, :client ]
+  enum status: [ :prospect, :client, :to_visit ]
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 end
