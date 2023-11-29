@@ -14,9 +14,16 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+    <div class="sidebar">
+      <%= render "shared/navbar" %>
+    </div>
+    <div class="top-bar">
+    </div>
+    <div class="agenda"></div>
+    <div class="proposition"></div>
+    <div class="map"></div>
+    <%# <%= render "shared/flashes" %>
 
-    <%= yield %>s
+    <%= yield %>
   </body>
 </html>

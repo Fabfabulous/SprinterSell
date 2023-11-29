@@ -1,10 +1,21 @@
-// Define variables for your color scheme
+:root {
+  /* ===== Colors ===== */
+  --body-color: #fff;
+  --light-grey: #F0F1F3;
+  --primary-yellow: #ffd43b;
+  --primary-blue: #183153;
+  --text-color: #1D1D1D;
+  --text-color-w: #ffffff;
+  --secondary-text-color: #727272;
+  --secondary-blue: #74c0fc;
+  --secondary-pink: #e599f7;
+  --secondary-orange: #ff8787;
+  --secondary-green: #63e6be;
+  --secondary-purple: #b197fc;
 
-// For example:
-$red: #FD1015;
-$blue: #0D6EFD;
-$yellow: #FFC65A;
-$orange: #E67E22;
-$green: #1EDD88;
-$gray: #0E0000;
-$light-gray: #F4F4F4;
+  /* ====== Transition ====== */
+  --tran-03: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+}
