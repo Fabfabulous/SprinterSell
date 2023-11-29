@@ -7,31 +7,41 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require "csv"
 
-company = Company.new(
-  name: "Le Wagon",
-  address: "20 rue des capucins",
-  zip_code: "69001",
-  city: "Lyon",
-  latitude: 45.7694,
-  longitude: 4.8345,
-  status: 1,
-  company_size: 10,
-  code_naf: "8559A"
-)
-company.save!
+Company.destroy_all
+Contact.destroy_all
+Meeting.destroy_all
 
-puts "!!!  START CONTACT CREATION  !!!"
-5.times do
-  contact = Contact.new(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
-    function: Faker::Company.profession,
-    email: Faker::Internet.unique.email,
-    phone_number: Faker::PhoneNumber.phone_number_with_country_code,
-    service: Faker::Company.department,
-    company_id: 1
+filepath = "db/migrate/company_data_20.csv"
+
+puts "!!!  START COMPANY/CONTACT CREATION  !!!"
+CSV.foreach(filepath, headers: :first_row) do |row|
+  company = Company.new(
+    name: row['name'],
+    address: row['address'],
+    zip_code: row['zip_code'],
+    city: row['city'],
+    latitude: row['latitude'],
+    longitude: row['longitude'],
+    status: row['status'].to_i,
+    company_size: row['company_size'],
+    code_naf: "8559A"
   )
-  contact.save!
+  company.save!
+
+  puts "company status: #{company.status}"
+  if company.status == "client"
+    contact = Contact.new(
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      function: Faker::Company.profession,
+      email: Faker::Internet.unique.email,
+      phone_number: Faker::PhoneNumber.phone_number_with_country_code,
+      service: Faker::Company.department,
+      company_id: company.id
+    )
+    contact.save!
+  end
 end
-puts "!!!  FINISH CONTACT CREATION  !!!"
+puts "!!!  FINISH COMPANY/CONTACT CREATION  !!!"
