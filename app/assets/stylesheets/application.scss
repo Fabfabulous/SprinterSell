@@ -1,7 +1,7 @@
 // Graphical variables
-@import "config/fonts";
 @import "config/colors";
-@import "config/bootstrap_variables";
+@import "config/typography";
+@import "config/border";
 
 // External libraries
 @import "bootstrap";
@@ -13,7 +13,6 @@
 
 
 /* Google Font Import - Montserrat */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap");
 
 * {
@@ -24,29 +23,11 @@
 }
 
 
-:root {
-  /* ===== Colors ===== */
-  --body-color: #F0F1F3;
-  --sidebar-color: #fff;
-  --primary-color: #ffd43b;
-  --primary-color-light: #f6f5ff;
-  --toggle-color: #183153;
-  --text-color: #1D1D1D;
-
-  /* ====== Transition ====== */
-  --tran-03: all 0.2s ease;
-  --tran-03: all 0.3s ease;
-  --tran-04: all 0.3s ease;
-  --tran-05: all 0.3s ease;
-}
-
 body {
   min-height: 100vh;
   background-color: var(--body-color);
-  transition: var(--tran-05);
 }
 
-::selection {
-  background-color: var(--primary-color);
-  color: #fff;
+a {
+  text-decoration: none;
 }
