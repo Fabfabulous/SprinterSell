@@ -1,5 +1,5 @@
 <h3>These prospects could interest you</h3>
-  <div class="container d-flex flex-row">
+  <div class="d-flex" style="width: 100%">
     <% @companies_prospect.each do |company_prospect| %>
       <%= render partial: "card", locals: { company: company_prospect } %>
     <% end %>
@@ -9,7 +9,7 @@
 
 
 <h3>Prospects you saved</h3>
-  <div class="container d-flex flex-row">
+  <div class="d-flex">
     <% @companies_prospect_to_visit.each do |company_prospect_to_visit| %>
       <%= render partial: "card", locals: { company: company_prospect_to_visit } %>
     <% end %>
