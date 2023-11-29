@@ -1,0 +1,10 @@
+.sidebar {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--primary-yellow);
+  margin: 16px;
+  padding: 10px 14px;
+}

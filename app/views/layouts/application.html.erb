@@ -14,16 +14,13 @@
   </head>
 
   <body>
-    <div class="sidebar">
+    <div class="big-container">
       <%= render "shared/navbar" %>
+      <div id="big">
+        <%= render "shared/topbar" %>
+        <%= yield %>
+        <%= render "shared/flashes"%>
+      </div>
     </div>
-    <div class="top-bar">
-    </div>
-    <div class="agenda"></div>
-    <div class="proposition"></div>
-    <div class="map"></div>
-    <%# <%= render "shared/flashes" %>
-
-    <%= yield %>
   </body>
 </html>
