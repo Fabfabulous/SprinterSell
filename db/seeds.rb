@@ -9,11 +9,13 @@
 #   end
 require "csv"
 
-Company.destroy_all
 Contact.destroy_all
 Meeting.destroy_all
+Company.destroy_all
+User.destroy_all
 
 filepath = "db/migrate/company_data_20.csv"
+
 
 puts "!!!  START COMPANY/CONTACT CREATION  !!!"
 CSV.foreach(filepath, headers: :first_row) do |row|
@@ -44,4 +46,35 @@ CSV.foreach(filepath, headers: :first_row) do |row|
     contact.save!
   end
 end
-puts "!!!  FINISH COMPANY/CONTACT CREATION  !!!"
+p "création user Test"
+user = User.new(
+  first_name: "Test",
+  last_name: "TEST",
+  email: "test@gmail.com",
+  password: "password",
+  phone_number: "+33638493020",
+  function: "président"
+)
+user.save!
+p "création user terminée"
+
+date = Time.now
+compte = 0
+
+p "création meetings"
+14.times do
+  date_meeting = (date + ((compte * 86400) / 2)).change({ hour: (8..17).to_a.sample, min: 0, sec: 0 })
+  meeting = Meeting.new(
+    title: Faker::DcComics.title,
+    date: date_meeting,
+    hour: date_meeting.change({ hour: (date_meeting.strftime("%H").to_i + [0, 1].sample), min: [15, 30, 45].sample }),
+    content: Faker::DcComics.title
+  )
+  meeting.user = User.first
+  meeting.contact = Contact.all.sample
+  meeting.save!
+  p "#{meeting}"
+  compte += 1
+end
+
+puts "!!!  FINISH COMPANY/CONTACT/MEETINGS CREATION  !!!"
