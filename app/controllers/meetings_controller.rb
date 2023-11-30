@@ -16,8 +16,10 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(meeting_params)
     @meeting.user = current_user
+    # @company = Company.find(params[:id])
+    # recuperer une company et lui associer un meeting
     if @meeting.save
-      # redirect_to meetings_path
+      redirect_to root_path()
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,6 +52,6 @@ class MeetingsController < ApplicationController
   end
 
   def meeting_params
-    params.require(:meeting).permit(:title, :date, :content, :user_id, :contact_id, :created_at, :updated_at)
+    params.require(:meeting).permit(:title, :date, :content, :user_id, :company_id, :created_at, :updated_at)
   end
 end

@@ -5,7 +5,7 @@ class CreateMeetings < ActiveRecord::Migration[7.1]
       t.date :date
       t.time :hour
       t.references :user, null: false, foreign_key: true
-      t.references :contact, null: false, foreign_key: true
+      t.references :contact, null: true, foreign_key: true
 
       t.timestamps
     end

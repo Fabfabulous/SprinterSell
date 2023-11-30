@@ -1,15 +1,15 @@
 <div class="container">
   <div class="home-left">
-    <div class="agenda border-g">
+    <div class="agenda">
       <%= render "meetings/agenda", meetings: @meetings %>
     </div>
+    <%# style="display:none;" %>
     <div class="proposition">
       <%= render partial: "contact" %>
     </div>
   </div>
   <div class="home-right">
-    <p>map</p>
-    <div style="width: 100%; height: 100%;"
+    <div style="width: 100%; height: 100%; "
       data-controller="map"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">

@@ -1,18 +1,18 @@
 <div class="d-flex">
   <div>
-    <%= meeting.company.name %>
-    <%= meeting.date.strftime("%H:%M") %>
-    <%= meeting.hour.strftime("%H:%M") %>
+    <p><%= meeting.company.name %></p>
+    <p><%= meeting.date.strftime("%H:%M") %></p>
+    <p><%= meeting.hour.strftime("%H:%M") %></p>
   </div>
   <div>
     <div class="d-flex">
-      <%= meeting.contact.first_name.capitalize %>
-      <%= meeting.contact.last_name.capitalize %>
+      <p><%= meeting.contact.first_name.capitalize %></p>
+      <p><%= meeting.contact.last_name.capitalize %></p>
     </div>
-    <%= meeting.contact.function %>
+    <p><%= meeting.contact.function %></p>
   </div>
   <div class="d-flex">
-    <%= meeting.contact.email %>
-    <%= meeting.contact.phone_number %>
+    <p><%= meeting.contact.email %></p>
+    <p><%= meeting.contact.phone_number %></p>
   </div>
 </div>
