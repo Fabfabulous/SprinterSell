@@ -1,0 +1,7 @@
+<%= simple_form_for Meeting.new do |f| %>
+  <%= f.input :title, placeholder: "Object of your meeting"%>
+  <%= f.input :content, placeholder: "Description of the meeting"%>
+  <%= f.input :hour, placeholder: "10am"%>
+  <%= f.association :company %>
+  <%= f.submit class:""%>
+<% end %>

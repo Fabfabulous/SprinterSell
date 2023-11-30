@@ -1,6 +1,6 @@
 .big-container {
   display: flex;
-  width: 100%;
+  width: 100vh;
   height: 100vh;
 }
 
@@ -13,6 +13,7 @@
 
 .container {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 100%;
 }
@@ -22,28 +23,23 @@
   flex-direction: column;
   width: 50%;
   height: 50%;
+  margin-right: 8px;
 }
 
-.home-left {
+.home-right {
   display: flex;
   width: 50%;
-  height: 50%;
+  height: 100%;
+  margin-right: 8px;
 }
 
 .agenda {
   width: 100%;
   height: 50%;
+  overflow: scroll;
 }
 .proposition {
   width: 100%;
   height: 50%;
-}
-
-.home-right {
-  width: 100%;
-  height: 100%;
-}
-.home-right {
-  width: 100%;
-  height: 100%;
+  overflow: scroll;
 }

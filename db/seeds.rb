@@ -71,7 +71,8 @@ p "création meetings"
     content: Faker::DcComics.title
   )
   meeting.user = User.first
-  meeting.contact = Contact.all.sample
+  meeting.company = Company.all.sample
+  meeting.contact = Contact.all.sample if rand(2).zero?
   meeting.save!
   p "#{meeting}"
   compte += 1
