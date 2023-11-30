@@ -1,7 +1,7 @@
 <div class="container">
   <div class="home-left">
     <div class="agenda border-g">
-      <%= render "meetings/agenda" %>
+      <%= render "meetings/agenda", meetings: @meetings %>
     </div>
     <div class="proposition">
       <%= render partial: "contact" %>

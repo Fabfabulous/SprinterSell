@@ -1,5 +1,5 @@
 <h4>Your Agenda</h4>
-<% (Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day)).each do |meeting| %>
+<% (meetings).each do |meeting| %>
   <div class="card p-1">
     <%= render meeting%>
   </div>
