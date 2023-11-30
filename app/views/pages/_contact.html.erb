@@ -1,16 +1,21 @@
-<h3>These prospects could interest you</h3>
-  <div class="d-flex" style="width: 100%">
+<div>
+  <h5>These prospects could interest you</h5>
+  <div class="cartes">
     <% @companies_prospect.each do |company_prospect| %>
       <%= render partial: "card", locals: { company: company_prospect } %>
     <% end %>
   </div>
+</div>
 
-<h3>Client close to your itinary</h3>
+<div>
+  <h5>Client close to your itinary</h5>
+</div>
 
-
-<h3>Prospects you saved</h3>
-  <div class="d-flex">
+<div>
+  <h5>Prospects you saved</h5>
+  <div class="cartes">
     <% @companies_prospect_to_visit.each do |company_prospect_to_visit| %>
       <%= render partial: "card", locals: { company: company_prospect_to_visit } %>
     <% end %>
   </div>
+</div>
