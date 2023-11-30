@@ -1,8 +1,25 @@
 <div class="sidebar b-radius-l">
   <div class="top-sidebar">
-    <p>sidebar</p>
+    <%= image_tag 'logo.png', class:"logo"%>
+    <div class="info-profile">
+      <%= image_tag 'profil.png', class:"img-profile"%>
+      <div class="name-function">
+        <p class="name p-ultra-small-b ">Remi lavigne</p>
+        <p class="function p-ultra-small">Sales representative</p>
+      </div>
+    </div>
+    <hr/>
+    <div class="hello">
+      <div class="btn-primary b-radius-s ">
+        <i class="fa-solid fa-house"></i>
+        <%= link_to "Home", root_path(), class:"btn-text"%>
+      </div>
+    </div>
   </div>
   <div class="bottom-sidebar">
-    <p>logout</p>
+    <div class="btn-logout b-radius-s outline-gray">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn-remove"%>
+    </div>
   </div>
 </div>

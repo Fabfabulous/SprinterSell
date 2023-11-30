@@ -4,7 +4,47 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: var(--primary-yellow);
-  margin: 16px;
+  background-color: var(--light-grey);
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
   padding: 10px 14px;
+}
+
+.top-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  margin-top: 85px;
+  width: 60%;
+}
+
+.info-profile {
+  margin-top: 45px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-profile {
+  width: 35px;
+  height: 35px;
+  object-fit: fill;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.name-function {
+ display: flex;
+ flex-direction: column;
+}
+
+.hr {
+  height: 3px;
+  background-color: black;
 }
