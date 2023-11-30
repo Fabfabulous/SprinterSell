@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
   def home
-    @companies = Company.all
-    @markers = @companies.geocoded.map do |company|
+    @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day)
+
+    @companies = @meetings.map(&:company)
+
+    @markers = @companies.map do |company|
       {
         lat: company.latitude,
         lng: company.longitude,
@@ -10,5 +13,6 @@ class PagesController < ApplicationController
     end
     @companies_prospect = Company.limit(5).where(status: 0)
     @companies_prospect_to_visit = Company.where(status: 2)
+
   end
 end
