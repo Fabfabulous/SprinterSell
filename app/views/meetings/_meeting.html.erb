@@ -5,16 +5,16 @@
     <p><%= meeting.hour.strftime("%H:%M") %></p>
   </div>
   <div>
-  <% if meeting.contact.present? %>
-   <div class="d-flex">
-      <p><%= meeting.contact.first_name.capitalize %></p>
-      <p><%= meeting.contact.last_name.capitalize %></p>
-    </div>
-    <p><%= meeting.contact.function %></p>
+    <% if meeting.contact.present? %>
+      <div class="d-flex">
+        <p><%= meeting.contact.first_name.capitalize %></p>
+        <p><%= meeting.contact.last_name.capitalize %></p>
+      </div>
+      <p><%= meeting.contact.function %></p>
+      <div class="d-flex">
+        <p><%= meeting.contact.email %></p>
+        <p><%= meeting.contact.phone_number %></p>
+      </div>
+    <% end %>
   </div>
-  <div class="d-flex">
-    <p><%= meeting.contact.email %></p>
-    <p><%= meeting.contact.phone_number %></p>
-  </div>
-  <% end %>
 </div>
