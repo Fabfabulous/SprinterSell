@@ -1,7 +1,15 @@
 <div class="carte">
-  <%= image_tag 'logo_company.png' %>
   <div class="carte-infos">
-    <h2><%= company.name %></h2>
-    <p><%= company.code_naf %></p>
+    <div class="l-side">
+      <div class="vl"></div>
+      <div>
+        <p class="p-bold"><%= company.name %></p>
+        <p class="p-small">Naf/APE: <%= company.code_naf %></p>
+      </div>
+    </div>
+    <div class="text-right">
+      <p class="p-small-b"><%= company.city %> </p>
+      <p class="p-small">Company-size: <%= company.company_size %></p>
+    </div>
   </div>
 </div>

@@ -17,6 +17,11 @@ class PagesController < ApplicationController
 
   def map
     @companies = Company.all
+    if params[:filter].present?
+      if params[:filter][:status] != ""
+        @companies = @companies.where('status = ? ', params[:filter][:status])
+      end
+    end
 
     @markers = @companies.map do |company|
       {
