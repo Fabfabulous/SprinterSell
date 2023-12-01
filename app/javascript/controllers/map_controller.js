@@ -7,7 +7,6 @@ export default class extends Controller {
     apiKey: String,
     markers: Array
   }
-
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
 
@@ -18,7 +17,7 @@ export default class extends Controller {
 
     this.#addMarkersToMap()
 
-    // START - Locate the user
+    /* START - Locate the user */
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
@@ -42,11 +41,13 @@ export default class extends Controller {
         })
           .then(response => response.json())
           .then(data => console.log(data));
+
+
+
       });
     } else {
       console.log("La géolocalisation n'est pas supportée par ce navigateur");
     }
-
     this.#fitMapToMarkers()
   }
 
