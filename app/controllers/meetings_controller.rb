@@ -15,6 +15,8 @@ class MeetingsController < ApplicationController
 
   def create
     @meeting = Meeting.new(meeting_params)
+    duration = meeting_params[:hour]
+    @meeting.hour = @meeting.date + duration.to_i.minutes
     @meeting.user = current_user
     # @company = Company.find(params[:id])
     # recuperer une company et lui associer un meeting
@@ -52,6 +54,6 @@ class MeetingsController < ApplicationController
   end
 
   def meeting_params
-    params.require(:meeting).permit(:title, :date, :content, :user_id, :company_id, :created_at, :updated_at)
+    params.require(:meeting).permit(:title, :date, :content, :hour, :user_id, :company_id, :created_at, :updated_at)
   end
 end
