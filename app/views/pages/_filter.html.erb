@@ -1,0 +1,8 @@
+<div data-controller="filter">
+  <%= simple_form_for :filter, url: "/map", method: :get, data: { action: "submit-> filter#getData" } do |form| %>
+    <div class="d-flex justify-content-between align-items-center">
+      <%= form.input :status, collection: ["", "0", "1", "2"], selected: params.dig(:filter, :status) %>
+      <%= form.submit "Filter", data: { filter_target: "submit" }, class:"h-25 btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
