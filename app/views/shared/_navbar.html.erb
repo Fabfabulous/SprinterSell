@@ -21,9 +21,30 @@
     </div>
   </div>
   <div class="bottom-sidebar">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notesModal">
+      <i class="fa-solid fa-pen-to-square"></i>
+        Notes
+    </button>
     <div class="btn-logout b-radius-s outline-gray">
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
       <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn-remove"%>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notesModalLabel">Notes</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'pages/notes_form'%>
+      </div>
     </div>
   </div>
 </div>

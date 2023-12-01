@@ -1,0 +1,5 @@
+<%= simple_form_for Meeting.new do |f| %>
+  <%= f.association :company %>
+  <%= f.input :note, :as => :text, placeholder: "Notes..."%>
+  <%= f.submit class:"Save"%>
+<% end %>
