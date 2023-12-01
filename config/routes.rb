@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :contacts
   resources :company, only:%i(index show )
   resources :meetings
+  get "map", to: "pages#map"
 end
