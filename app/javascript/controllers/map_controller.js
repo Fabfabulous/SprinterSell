@@ -20,30 +20,57 @@ export default class extends Controller {
     /* START - Locate the user */
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        const latitude = position.coords.latitude;
+        const latitude  = position.coords.latitude;
         const longitude = position.coords.longitude;
+        const start     = [longitude, latitude];
 
-        const userMarker = new mapboxgl.Marker({ color: 'blue' }) // change color marker
+        new mapboxgl.Marker({ color: 'blue' }) // change color marker
           .setLngLat([longitude, latitude])
           .addTo(this.map);
 
-        const markersCoordinates = this.markersValue.map((marker) => {
-          return `${marker.lat},${marker.lng}`
+        const coordinates = this.markersValue.map((marker) => {
+          return [marker.lng, marker.lat]
         })
 
-        console.log(markersCoordinates);
+        coordinates.unshift(start);
 
-        const coordinates = [[`${latitude},${longitude}`], markersCoordinates].flat()
+        console.log(coordinates);
 
-        fetch(`https://api.mapbox.com/optimized-trips/v1/mapbox/driving/${coordinates.join(';')}?access_token=${this.apiKeyValue}&geometries=geojson`, {
-          method: "GET",
-          headers: {"Accept": "application/json"}
-        })
-          .then(response => response.json())
-          .then(data => console.log(data));
+        fetch(
+          `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coordinates.join(';')}?geometries=geojson&access_token=${mapboxgl.accessToken}`,
+          { method: 'GET' }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            const routes = data.routes[0];
+            const route = routes.geometry.coordinates;
+            const geojson = {
+              type: 'Feature',
+              properties: {},
+              geometry: {
+                type: 'LineString',
+                coordinates: route
+              }
+            };
 
-
-
+            this.map.addLayer({
+              id: 'route',
+              type: 'line',
+              source: {
+                type: 'geojson',
+                data: geojson
+              },
+              layout: {
+                'line-join': 'round',
+                'line-cap': 'round'
+              },
+              paint: {
+                'line-color': '#3887be',
+                'line-width': 5,
+                'line-opacity': 0.75
+              }
+            });
+          })
       });
     } else {
       console.log("La géolocalisation n'est pas supportée par ce navigateur");
