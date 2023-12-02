@@ -1,0 +1,10 @@
+<%= simple_form_for meeting do |f| %>
+  <%= f.input :title, placeholder: "Object of your meeting"%>
+  <%= f.input :content, placeholder: "Description of the meeting"%>
+  <%= f.input :date,
+            as: :string,
+            input_html: { data: { controller: "datepicker"},
+            value: f.object.date || Time.now } %>
+  <%= f.association :company %>
+  <%= f.submit class:""%>
+<% end %>
