@@ -14,14 +14,16 @@ class PagesController < ApplicationController
         }
       )
       Company.all.each do |company|
-        test_distance = haversine_distance(meeting_company.latitude, meeting_company.longitude, company.latitude, company.longitude)
-        if test_distance < 0.4 && company != meeting_company
-          @companies_suggestion.push(company)
-          @markers_prospect.push({
-            lat: company.latitude,
-            lng: company.longitude,
-            info_window_html: render_to_string(partial: "info_window", locals: { company: })
-          })
+        if company.latitude
+          test_distance = haversine_distance(meeting_company.latitude, meeting_company.longitude, company.latitude, company.longitude)
+          if test_distance < 0.4 && company != meeting_company
+            @companies_suggestion.push(company)
+            @markers_prospect.push({
+              lat: company.latitude,
+              lng: company.longitude,
+              info_window_html: render_to_string(partial: "info_window", locals: { company: })
+            })
+          end
         end
       end
     end
@@ -47,7 +49,7 @@ class PagesController < ApplicationController
   private
   # Méthode pour convertir les degrés en radians
   def deg2rad(deg)
-    return deg * (Math::PI / 180)
+      return deg * (Math::PI / 180)
   end
 
   # Méthode pour calculer la distance entre deux points GPS en utilisant la formule Haversine

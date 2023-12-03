@@ -53,7 +53,8 @@ user = User.new(
   email: "test@gmail.com",
   password: "password",
   phone_number: "+33638493020",
-  function: "président"
+  function: "président",
+  admin: true
 )
 user.save!
 p "création user terminée"
