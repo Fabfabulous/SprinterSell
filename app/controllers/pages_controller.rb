@@ -3,21 +3,27 @@ class PagesController < ApplicationController
     @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day)
     @companies = @meetings.map(&:company)
     @companies_suggestion = []
-    @companies.each do |meeting|
+    @markers_prospect = []
+    @markers = []
+    @companies.each do |meeting_company|
+      @markers.push(
+        {
+          lat: meeting_company.latitude,
+          lng: meeting_company.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: { company: meeting_company })
+        }
+      )
       Company.all.each do |company|
-        test_distance = haversine_distance(meeting.latitude, meeting.longitude, company.latitude, company.longitude)
-        p test_distance
-        if test_distance < 0.3
+        test_distance = haversine_distance(meeting_company.latitude, meeting_company.longitude, company.latitude, company.longitude)
+        if test_distance < 0.4 && company != meeting_company
           @companies_suggestion.push(company)
+          @markers_prospect.push({
+            lat: company.latitude,
+            lng: company.longitude,
+            info_window_html: render_to_string(partial: "info_window", locals: { company: })
+          })
         end
       end
-    end
-    @markers = @companies.map do |company|
-      {
-        lat: company.latitude,
-        lng: company.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { company: })
-      }
     end
     @companies_prospect = Company.limit(5).where(status: 0)
     @companies_prospect_to_visit = Company.where(status: 2)
@@ -60,7 +66,7 @@ class PagesController < ApplicationController
     a = Math.sin(dlat / 2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon / 2)**2
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 
-    # Rayon moyen de la Terre en kilomètres
+    # Rayon de la Terre en kilomètres
     r = 6371.0
 
     # Distance en kilomètres
