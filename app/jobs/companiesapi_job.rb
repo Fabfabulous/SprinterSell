@@ -3,13 +3,12 @@ class CompaniesapiJob < ApplicationJob
   require 'open-uri'
 
   def perform
-    page = 1
     naf = "85.59A"
     zipcode = 69_001
-    url = "https://recherche-entreprises.api.gouv.fr/search?q=#{zipcode}%20Lyon&activite_principale=#{naf}&categorie_entreprise=PME%2CETI&departement=69&page=#{page}&per_page=25"
-    response = JSON.parse(URI.open(url).read, symbolize_names: true)
     9.times do
       page = 1
+      url = "https://recherche-entreprises.api.gouv.fr/search?q=#{zipcode}%20Lyon&activite_principale=#{naf}&categorie_entreprise=PME%2CETI&departement=69&page=#{page}&per_page=25"
+      response = JSON.parse(URI.open(url).read, symbolize_names: true)
       response[:total_pages].times do
         url = "https://recherche-entreprises.api.gouv.fr/search?q=#{zipcode}%20Lyon&activite_principale=#{naf}&categorie_entreprise=PME%2CETI&departement=69&page=#{page}&per_page=25"
         response = JSON.parse(URI.open(url).read, symbolize_names: true)

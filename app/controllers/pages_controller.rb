@@ -31,18 +31,23 @@ class PagesController < ApplicationController
     @companies_prospect_to_visit = Company.where(status: 2)
   end
   def map
-    @companies = Company.all
+    @companies_all = Company.all
+    @markers = []
     if params[:filter].present?
       if params[:filter][:status] != ""
-        @companies = @companies.where('status = ? ', params[:filter][:status])
+        @companies_all = @companies_all.where('status = ? ', params[:filter][:status])
       end
     end
-    @markers = @companies.map do |company|
-      {
-        lat: company.latitude,
-        lng: company.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: { company: })
-      }
+    @companies_all.each do |company|
+      if company.latitude?
+        @markers.push(
+          {
+            lat: company.latitude,
+            lng: company.longitude,
+            info_window_html: render_to_string(partial: "info_window", locals: { company: })
+          }
+        )
+      end
     end
   end
 
