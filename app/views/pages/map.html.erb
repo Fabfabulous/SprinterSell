@@ -1,6 +1,10 @@
 <div class="container">
       <div class="vertical-list">
-      <%= render partial: "company-list" %>
+      <div class="">
+        <%= render 'filter', company: @company %>
+        <%= link_to "Reset Filter", root_path, class: "btn btn-outline-primary" %>
+      </div>
+      <%= render "company-list", companies: @companies_all %>
     </div>
     <div style="width: 100%; height: 100%;"
       data-controller="map"
