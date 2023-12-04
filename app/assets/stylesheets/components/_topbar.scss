@@ -3,7 +3,12 @@
   height: 10%;
   display: flex;
   justify-content: space-between;
-  background-color: var(--body-color);
-  margin: 16px;
+  background-color: var(--dark-grey);
+  margin: 8px;
   padding: 10px 14px;
+}
+
+
+.title-topbar {
+  color: var(--text-color-w);
 }

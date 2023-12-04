@@ -19,6 +19,7 @@
 }
 
 .home-left {
+  background-color: var(--dark-grey);
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -27,6 +28,7 @@
 }
 
 .hosme-right {
+  background-color: var(--dark-grey);
   display: flex;
   width: 50%;
   height: 100%;
