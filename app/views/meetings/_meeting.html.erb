@@ -17,7 +17,7 @@
       </div>
     <% end %>
   </div>
-  <button type="button" data-bs-toggle="modal" data-bs-target="#EditModal" class="fa-regular fa-pen-to-square" style="color: #ffd43b">
+  <button type="button" data-bs-toggle="modal" data-bs-target="#editMeetingModal" class="fa-regular fa-pen-to-square" style="color: #ffd43b">
   </button>
   <%# <button type= "button" >
     <i class="fa-solid fa-trash" style="color: #ffd43b;"></i>
@@ -27,4 +27,4 @@
 
 
 <!-- Modal -->
-<%= render 'meetings/modale_meeting'%>
+<%= render 'meetings/modale_meeting', meeting: meeting, modal_id: 'editMeetingModal' %>
