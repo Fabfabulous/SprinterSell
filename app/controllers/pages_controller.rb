@@ -64,7 +64,7 @@ class PagesController < ApplicationController
       format.html # Follow regular flow of Rails
       format.json do
         render json: {
-          companies_html: render_to_string(partial: "pages/company-list", locals: { companies: @companies_all }, formats: [:html]),
+          companies_html: render_to_string(partial: "pages/company-list", locals: { companies: @companies_all, type: "card" }, formats: [:html]),
           markers: @markers
         }
       end

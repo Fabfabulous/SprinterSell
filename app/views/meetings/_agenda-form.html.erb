@@ -1,11 +1,14 @@
 <%= simple_form_for Meeting.new do |f| %>
+  <%= f.input :hour, as: :numeric, label: "Duration" %>
   <%= f.input :title, placeholder: "Object of your meeting"%>
   <%= f.input :content, placeholder: "Description of the meeting"%>
   <%= f.input :date,
             as: :string,
             input_html: { data: { controller: "datepicker"},
             value: f.object.date || Time.now } %>
-  <%= f.input :hour, as: :numeric, label: "Ending hour" %>
-  <%= f.association :company %>
   <%= f.submit class:""%>
+
+<div class="suggestion-container">
+  <%= render partial: "company-list", locals: { companies: @companies_suggestion, type: "suggestion-card" }  %>
+</div>
 <% end %>

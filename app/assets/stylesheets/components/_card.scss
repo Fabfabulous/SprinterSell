@@ -85,6 +85,12 @@
   transition: all 0.2s;
 }
 
+.radio-input {
+  display: none;
+}
+.radio-input:checked + .radio-label {
+  background-color: red;
+}
 .carte:not(:last-child) {
   margin-right: 10px;
 }

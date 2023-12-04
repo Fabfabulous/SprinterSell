@@ -1,3 +1,9 @@
-<% companies.each do |company| %>
-  <%= render partial: "card", locals: { company: } %>
+<% if @companies_all %>
+  <% @companies_all.each do |company| %>
+    <%= render partial: "pages/#{type}", locals: { company: } %>
+  <% end %>
+<% elsif @companies_suggestion %>
+  <% @companies_suggestion.each do |company| %>
+    <%= render partial: "pages/#{type}", locals: { company: } %>
+  <% end %>
 <% end %>
