@@ -5,7 +5,8 @@ import mapboxgl from 'mapbox-gl' // Don't forget this!
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    markers: Array,
+    markersProspect: Array
   }
   connect() {
     mapboxgl.accessToken = this.apiKeyValue
@@ -24,7 +25,7 @@ export default class extends Controller {
         const longitude = position.coords.longitude;
         const start     = [longitude, latitude];
 
-        new mapboxgl.Marker({ color: 'blue' }) // change color marker
+        new mapboxgl.Marker({ color: 'green' }) // change color marker
           .setLngLat([longitude, latitude])
           .addTo(this.map);
 
@@ -81,16 +82,26 @@ export default class extends Controller {
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
-      new mapboxgl.Marker()
+      new mapboxgl.Marker({ color: 'blue' })
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)
     })
+
+    this.markersProspectValue.forEach((marker) => {
+      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
+      new mapboxgl.Marker({ color: 'red' })
+        .setLngLat([ marker.lng, marker.lat ])
+        .setPopup(popup)
+        .addTo(this.map)
+    })
+
   }
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
+    this.markersProspectValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 }

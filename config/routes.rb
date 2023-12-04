@@ -13,4 +13,9 @@ Rails.application.routes.draw do
   resources :company, only:%i(index show )
   resources :meetings
   get "map", to: "pages#map"
+
+  require "sidekiq/web"
+  authenticate :user, ->(user) { user.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

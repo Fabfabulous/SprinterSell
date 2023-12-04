@@ -17,4 +17,27 @@
       </div>
     <% end %>
   </div>
+  <button type="button" data-bs-toggle="modal" data-bs-target="#EditModal" class="fa-regular fa-pen-to-square" style="color: #ffd43b">
+  </button>
+  <%# <button type= "button" >
+    <i class="fa-solid fa-trash" style="color: #ffd43b;"></i>
+  </button> %>
+  <%= button_to '', meeting_path(meeting), method: :delete, class:"fa-solid fa-trash", style:"color: #ffd43b", data: { confirm: 'Are you sure you want to delete this meeting?' }  %>
+</div>
+
+
+
+<%# modal %>
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render 'meetings/agenda_form_edit', meeting: meeting%>
+      </div>
+    </div>
+  </div>
 </div>
