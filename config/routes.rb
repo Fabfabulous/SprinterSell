@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :contacts
-  resources :company, only:%i(index show )
+  resources :company, only:%i(index show)
   resources :meetings
   get "map", to: "pages#map"
+
+  # resources :note, only:%i(create)
+  patch '/save_note', to: 'pages#save_note'
 end

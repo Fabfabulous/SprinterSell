@@ -1,5 +1,8 @@
-<%= simple_form_for Meeting.new do |f| %>
-  <%= f.association :company %>
-  <%= f.input :note, :as => :text, placeholder: "Notes..."%>
-  <%= f.submit class:"Save"%>
-<% end %>
+<div data-controller="notes">
+  <%= simple_form_for :note, url: save_note_path, method: :patch do |f| %>
+    <%= f.input :company_id, collection: Company.all, label: 'Company' %>
+    <%= f.input :title %>
+    <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here' %>
+    <%= f.button :submit, 'SAVE', class: 'btn btn-primary' %>
+  <% end %>
+</div>
