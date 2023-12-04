@@ -3,19 +3,22 @@ import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl' // Don't forget this!
 
 export default class extends Controller {
+  static targets= ["input", "form", "list", "map"]
   static values = {
     apiKey: String,
     markers: Array,
     markersProspect: Array
   }
   connect() {
+
+    this.markers = []
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
-      container: this.element,
+      container: this.mapTarget,
       style: "mapbox://styles/mapbox/streets-v10"
     })
 
-    this.#addMarkersToMap()
+    this.#createMarkersToMap()
 
     /* START - Locate the user */
     if (navigator.geolocation) {
@@ -78,23 +81,30 @@ export default class extends Controller {
     this.#fitMapToMarkers()
   }
 
-  #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
+  #createMarkersToMap() {
+    this.#addMarkersToMap(this.markersValue, this.markersProspectValue)
+  }
+
+  #addMarkersToMap(markers, propectMarkers) {
+    this.markers.forEach((m) => {
+      m.remove()
+    })
+    markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
-      new mapboxgl.Marker({ color: 'blue' })
+      const markerHTML = new mapboxgl.Marker({ color: 'blue' })
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)
+      this.markers.push(markerHTML)
     })
 
-    this.markersProspectValue.forEach((marker) => {
+    propectMarkers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
       new mapboxgl.Marker({ color: 'red' })
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)
     })
-
   }
 
   #fitMapToMarkers() {
@@ -103,4 +113,22 @@ export default class extends Controller {
     this.markersProspectValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
+
+
+  update() {
+    const url = `${this.formTarget.action}?query=${this.inputTarget.value}`
+    console.log(url)
+    fetch(url, {
+        headers:{
+          "Accept": "application/json"
+        }
+      })
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data);
+        this.listTarget.innerHTML = data.companies_html
+        this.#addMarkersToMap(data.markers, [])
+      })
+  }
+
 }

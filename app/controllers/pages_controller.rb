@@ -57,7 +57,12 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # Follow regular flow of Rails
-      format.text { render partial: "pages/company-list", locals: { companies: @companies_all }, formats: [:html] }
+      format.json do
+        render json: {
+          companies_html: render_to_string(partial: "pages/company-list", locals: { companies: @companies_all }, formats: [:html]),
+          markers: @markers
+        }
+      end
     end
   end
 
