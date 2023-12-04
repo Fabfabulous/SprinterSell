@@ -6,6 +6,7 @@ class PagesController < ApplicationController
     @markers_prospect = []
     @markers = []
     @companies.each do |meeting_company|
+      @compteur = 0
       @markers.push(
         {
           lat: meeting_company.latitude,
@@ -17,16 +18,20 @@ class PagesController < ApplicationController
         if company.latitude
           test_distance = haversine_distance(meeting_company.latitude, meeting_company.longitude, company.latitude, company.longitude)
           if test_distance < 0.4 && company != meeting_company
-            @companies_suggestion.push(company)
-            @markers_prospect.push({
-              lat: company.latitude,
-              lng: company.longitude,
-              info_window_html: render_to_string(partial: "info_window", locals: { company: company})
-            })
+            if @compteur < 5
+              @companies_suggestion.push(company)
+              @markers_prospect.push({
+                lat: company.latitude,
+                lng: company.longitude,
+                info_window_html: render_to_string(partial: "info_window", locals: { company: company})
+              })
+            end
+            @compteur += 1
           end
         end
       end
     end
+    @markers_prospect = @markers_prospect
     @companies_prospect = Company.limit(5).where(status: 0)
     @companies_prospect_to_visit = Company.where(status: 2)
   end
