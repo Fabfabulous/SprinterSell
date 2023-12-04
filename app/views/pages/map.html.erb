@@ -1,10 +1,23 @@
-<div class="container">
-      <div class="vertical-list">
+<div class="container" >
+    <div class="vertical-list" data-controller="search-companies">
       <div class="">
         <%= render 'filter', company: @company %>
         <%= link_to "Reset Filter", root_path, class: "btn btn-outline-primary" %>
       </div>
-      <%= render "company-list", companies: @companies_all %>
+      <div>
+        <%= form_with url: map_path, method: :get, html: {class:
+        "m-3", data: {search_companies_target: "form"}} do |f| %>
+        <%= f.text_field :query,
+                     class: "form-control",
+                     placeholder: "Type a company name",
+                     value: params[:query],
+                     data: {search_companies_target: "input",
+                     action: "keyup->search-companies#update"} %>
+        <% end %>
+      </div>
+      <div data-search-companies-target="list">
+        <%= render "company-list", companies: @companies_all %>
+      </div>
     </div>
     <div style="width: 100%; height: 100%;"
       data-controller="map"
