@@ -81,4 +81,19 @@ class PagesController < ApplicationController
 
     return distance
   end
+
+  def save_note
+    @company = Company.find(params[:note][:company_id])
+    @note = Note.new(note_params)
+    @note.company_id = @company.id
+    if @note.save
+      redirect_to root_path, notice: 'Note updated successfully.'
+    end
+  end
+
+  private
+
+  def note_params
+    params.require(:note).permit(:title, :content)
+  end
 end
