@@ -21,7 +21,7 @@ class PagesController < ApplicationController
             @markers_prospect.push({
               lat: company.latitude,
               lng: company.longitude,
-              info_window_html: render_to_string(partial: "info_window", locals: { company: })
+              info_window_html: render_to_string(partial: "info_window", locals: { company: company})
             })
           end
         end
@@ -30,31 +30,47 @@ class PagesController < ApplicationController
     @companies_prospect = Company.limit(5).where(status: 0)
     @companies_prospect_to_visit = Company.where(status: 2)
   end
+
   def map
-    @companies_all = Company.all
     @markers = []
-    if params[:filter].present?
-      if params[:filter][:status] != ""
-        @companies_all = @companies_all.where('status = ? ', params[:filter][:status])
-      end
+    if params[:filter].present? && params[:filter][:status] != ""
+      @companies_all = Company.where('status = ? ', params[:filter][:status]).limit(10)
+    elsif params[:query].present?
+      @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(10)
+    else
+      @companies_all = Company.limit(100)
     end
+
+    p params[:query]
+
     @companies_all.each do |company|
-      if company.latitude?
-        @markers.push(
-          {
-            lat: company.latitude,
-            lng: company.longitude,
-            info_window_html: render_to_string(partial: "info_window", locals: { company: })
-          }
-        )
+      next unless company.latitude?
+
+      @markers.push(
+        {
+          lat: company.latitude,
+          lng: company.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: { company: }, formats: [:html])
+        }
+      )
+    end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.json do
+        render json: {
+          companies_html: render_to_string(partial: "pages/company-list", locals: { companies: @companies_all }, formats: [:html]),
+          markers: @markers
+        }
       end
     end
   end
 
   private
+
   # Méthode pour convertir les degrés en radians
   def deg2rad(deg)
-      return deg * (Math::PI / 180)
+    return deg * (Math::PI / 180)
   end
 
   # Méthode pour calculer la distance entre deux points GPS en utilisant la formule Haversine
