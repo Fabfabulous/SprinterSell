@@ -18,7 +18,8 @@
       <% end %>
     </div>
     <div data-map-target="list">
-      <%= render "company-list", companies: @companies_all %>
+      <%= render partial: "company-list", locals: { companies: @companies_all, type: "card" } %>
+
     </div>
   </div>
   <div style="width: 100%; height: 100%;" data-map-target="map">
