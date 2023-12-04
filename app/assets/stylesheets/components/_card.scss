@@ -44,7 +44,7 @@
 //   object-fit: cover
 // }
 .vl {
-  border-left: 6px solid rgb(102, 72, 190);
+  border-left: 6px solid rgb(0, 68, 253);
   height: 100%;
   margin-right: 8px;
   border-radius: 8px;
@@ -78,7 +78,7 @@
   flex-direction: row;
   // flex: 0 0 100%;
   padding: 20px;
-  background: white;
+  background-color: var(--dark-grey);
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
   scroll-snap-align: start;
@@ -89,10 +89,6 @@
   margin-right: 10px;
 }
 
-.carte:hover {
-  color: white;
-  background: #212529;
-}
 
 .cartes::-webkit-scrollbar {
   height: 12px;
