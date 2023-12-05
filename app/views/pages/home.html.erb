@@ -1,12 +1,11 @@
 <div class="container">
   <div class="home-left">
     <div class="agenda">
-      <%= render "meetings/agenda", meetings: @meetings %>
+      <%= render partial:"meetings/agenda", locals: { meetings: @meetings, companies: @companies_suggestion} %>
     </div>
     <%# style="display:none;" %>
     <div class="suggestion">
       <h2>Suggestion</h2>
-      <%= render "pages/company-list", companies: @companies_suggestion.first(4)  %>
     </div>
   </div>
   <div class="home-right">

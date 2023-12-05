@@ -38,8 +38,8 @@ class PagesController < ApplicationController
 
   def map
     @markers = []
-    if params[:filter].present? && params[:filter][:status] != ""
-      @companies_all = Company.where('status = ? ', params[:filter][:status]).limit(10)
+    if params[:status].present?
+      @companies_all = Company.where('status = ? ', params[:status]).limit(10)
     elsif params[:query].present?
       @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(10)
     else
@@ -64,7 +64,7 @@ class PagesController < ApplicationController
       format.html # Follow regular flow of Rails
       format.json do
         render json: {
-          companies_html: render_to_string(partial: "pages/company-list", locals: { companies: @companies_all }, formats: [:html]),
+          companies_html: render_to_string(partial: "pages/company-list", locals: { companies: @companies_all, type: "card" }, formats: [:html]),
           markers: @markers
         }
       end
