@@ -6,7 +6,6 @@ class PagesController < ApplicationController
     @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
     @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
     @companies_suggestion = []
-    @markers_prospect = []
     @markers = []
     @companies.each do |meeting_company|
       @compteur = 0
@@ -23,11 +22,6 @@ class PagesController < ApplicationController
           if test_distance < 0.4 && company != meeting_company
             if @compteur < 5
               @companies_suggestion.push(company)
-              # @markers_prospect.push({
-              #   lat: company.latitude,
-              #   lng: company.longitude,
-              #   info_window_html: render_to_string(partial: "info_window", locals: { company: company})
-              # })
             end
             @compteur += 1
           end

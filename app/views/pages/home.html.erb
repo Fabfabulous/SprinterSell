@@ -14,7 +14,6 @@
       data-map-target="map"
       data-map-next-meeting-value= "<%=@gps_next_meeting.to_json%>"
       data-map-markers-value="<%= @markers.to_json %>"
-      data-map-markers-prospect-value="<%= @markers_prospect.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
     <%= link_to "Let's Drive", @waze_url %>

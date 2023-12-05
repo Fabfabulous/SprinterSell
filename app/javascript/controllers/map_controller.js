@@ -7,7 +7,6 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     markers: Array,
-    markersProspect: Array,
     nextMeeting: Array
   }
   connect() {
@@ -95,20 +94,11 @@ export default class extends Controller {
         .addTo(this.map)
       this.markers.push(markerHTML)
     })
-
-    propectMarkers.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
-      new mapboxgl.Marker({ color: 'red' })
-        .setLngLat([ marker.lng, marker.lat ])
-        .setPopup(popup)
-        .addTo(this.map)
-    })
   }
 
   #fitMapToMarkers() {
     const bounds = new mapboxgl.LngLatBounds()
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
-    this.markersProspectValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
 
