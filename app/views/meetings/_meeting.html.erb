@@ -27,4 +27,20 @@
 
 
 <!-- Modal -->
-<%= render 'meetings/modale_meeting', meeting: meeting, modal_id: 'editMeetingModal' %>
+<%# <%= render 'meetings/modale_meeting', meeting: meeting, modal_id: 'editMeetingModal' %> %>
+
+
+
+<div class="modal fade" id="<%= "editMeetingModal" %>" tabindex="-1" aria-labelledby="meetingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="meetingModalLabel"><%= meeting.persisted? ? 'Edit' : 'New' %> meeting</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "meetings/agenda_form_edit", meeting: meeting %>
+      </div>
+    </div>
+  </div>
+</div>
