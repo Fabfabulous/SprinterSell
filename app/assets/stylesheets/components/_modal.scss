@@ -12,6 +12,13 @@
 
 .modal-company-top {
 display: flex;
+width: 100%;
+margin-bottom: 16px;
+border-left: 6px solid red;
+}
+
+.width {
+  width: 100%;
 }
 
 .modal-body {
@@ -46,6 +53,7 @@ display: flex;
 }
 
 .modal-contact-info {
+  display: flex;
   background-color: var(--light-grey);
   color: var(--text-color);
   width: 100%;
@@ -54,15 +62,22 @@ display: flex;
 }
 
 .display-info {
+  width: 100%;
   display: flex;
-  align-items: end;
+  float: right;
 }
 
 .all-contact-info {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  margin-left: 6px;
 }
 
 .text-black {
  color: var(--text-color);
+}
+
+.right-side-contact {
+  float: right;
 }
