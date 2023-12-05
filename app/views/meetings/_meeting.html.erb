@@ -7,9 +7,9 @@
   <div class="carte-meeting-company"><%= meeting.company.name %></div>
   <div class="carte-meeting-contact">
     <% if meeting.contact.present? %>
-      <p class=""><%= "#{meeting.contact.first_name.capitalize} #{meeting.contact.last_name.capitalize}" %></p>
-      <p class=""><%= meeting.contact.email %></p>
-      <p class=""><%= meeting.contact.phone_number %></p>
+      <p class="p-bold"><%= "#{meeting.contact.first_name.capitalize} #{meeting.contact.last_name.capitalize}" %></p>
+      <p class="p-small"><%= meeting.contact.email %></p>
+      <p class="p-small"><%= meeting.contact.phone_number %></p>
     <% end %>
   </div>
   <div class="carte-meeting-actions">

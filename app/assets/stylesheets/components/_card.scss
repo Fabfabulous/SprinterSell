@@ -1,3 +1,4 @@
+
 .bar {
   height: 100%;
   margin-right: 8px;
@@ -50,9 +51,17 @@
 .radio-input {
   display: none;
 }
+
 .radio-input:checked + .radio-label {
-  background-color: red;
+  background-color: var(--light-grey);
+  border-radius: 16px;
 }
+
+.radio-input:checked + .radio-label .carte-company-meeting-left p,
+.radio-input:checked + .radio-label .carte-company-meeting-right p {
+  color: var(--text-color);
+}
+
 .carte:not(:last-child) {
   margin-right: 10px;
 }
@@ -74,7 +83,8 @@
 .cartes::-webkit-scrollbar-track {
   background: #edf2f4;
 }
-// Carte meeting
+
+// Cards meeting displayed in agenda
 
 .meetings {
   padding: 16px;
@@ -83,7 +93,7 @@
   display: flex;
   width: 100%;
   height: 94px;
-  margin-top: 1px;  
+  margin-top: 1px;
   margin-bottom: 1px;
   color: white;
   align-items: center;
@@ -123,31 +133,41 @@
   }
 }
 
-.carte-left {
-  display: flex;
-  flex-direction: row;
-  width: 40%;
-  height: 100%;
-  justify-content: flex-start;
-}
-
-.carte-right {
-  display: flex;
-  flex-direction: row;
-  width: 60%;
-  height: 100%;
-  justify-content: flex-end;
-}
-
-.carte-display-contact {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: start;
-}
-
 .fa-plus-center {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+// Cards comapny displayed in meeting creation proposal
+.carte-company-meeting-master {
+  width: 100%;
+  margin: 8px;
+}
+.carte-company-meeting-infos {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 65px;
+  margin-bottom: 16px;
+  padding: 10px 0px;
+}
+
+.carte-company-meeting {
+  flex-basis: 20%;
+}
+
+.carte-company-meeting-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-basis: 40%;
+}
+
+.carte-company-meeting-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  flex-basis: 40%;
 }
