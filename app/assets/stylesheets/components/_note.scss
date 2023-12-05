@@ -1,0 +1,20 @@
+.note-section {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.note-aperçu {
+  width: 100%;
+}
+
+.aperçu {
+  margin-top: 6px;
+  padding: 6px;
+  border-radius: 6px;
+  background-color: var(--light-grey);
+  border: 1px solid #F7F6F2;
+  width: 150px;
+  height: 250px;
+  color: var(--dark-grey);
+  flex-wrap: wrap;
+}

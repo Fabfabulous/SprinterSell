@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
   def home
-    @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day)
+    @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day).order(date: :asc)
     @companies = @meetings.map(&:company)
-    @next_meeting = Meeting.where('date >= ?', DateTime.now).order(date: :asc).first
-    @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
-    @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
+    @next_meeting = Meeting.where('date >= ? AND date < ?', DateTime.current, DateTime.current.end_of_day).order(date: :asc).first  
+    unless @next_meeting.nil?
+      @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
+      @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
+    end
     @companies_suggestion = []
     @markers = []
     @companies.each do |meeting_company|
