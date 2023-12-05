@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :meetings
   get "map", to: "pages#map"
 
-
+  resources :notes, only:%i(create)
   # resources :note, only:%i(create)
   patch '/save_note', to: 'pages#save_note'
 
