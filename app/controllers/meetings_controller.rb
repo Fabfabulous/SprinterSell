@@ -6,7 +6,6 @@ class MeetingsController < ApplicationController
   end
 
   def show
-    @meeting = Meeting.find(params[:id])
   end
 
   def new
@@ -32,14 +31,11 @@ class MeetingsController < ApplicationController
 
   def update
     if @meeting.user == current_user
-      if meeting_params[:hour].nil?
-        @meeting.hour = set_meeting.hour
-      end
       if @meeting.update(meeting_params)
         redirect_to root_path, notice: "Meeting successfully updated !"
         # redirect_to meetings_path, notice: "meeting successfully updated !"
       else
-        render :new, status: :unprocessable_entity
+        redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
       end
     else
       redirect_to root_path, notice: "You are not authorized to update this meeting."

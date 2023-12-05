@@ -1,0 +1,20 @@
+
+
+<input type="radio" name="meeting[company_id]" value="<%= company.id %>" class="radio-input" id="company_<%= company.id %>">
+
+<label for="company_<%= company.id %>" class="radio-label carte m-2">
+  <div class="carte-infos">
+    <div class="l-side">
+      <div class="vl"></div>
+      <div>
+        <p class="p-bold"><%= company.name %></p>
+        <p class="p-small">Naf/APE: <%= company.code_naf %></p>
+      </div>
+    </div>
+    <div class="text-right">
+      <p class="p-small-b"><%= company.city %> </p>
+      <p class="p-small">Company-size: <%= company.company_size %></p>
+      <button type="button" class="fa-solid fa-calendar-days" style="color: #ffd43b;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    </div>
+  </div>
+</label>

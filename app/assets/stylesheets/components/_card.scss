@@ -49,6 +49,12 @@
   margin-bottom: 16px;
 }
 
+.radio-input {
+  display: none;
+}
+.radio-input:checked + .radio-label {
+  background-color: red;
+}
 .carte:not(:last-child) {
   margin-right: 10px;
 }
