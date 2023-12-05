@@ -2,6 +2,9 @@ class PagesController < ApplicationController
   def home
     @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day)
     @companies = @meetings.map(&:company)
+    @next_meeting = Meeting.where('date >= ?', DateTime.now).order(date: :asc).first
+    @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
+    @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
     @companies_suggestion = []
     @markers_prospect = []
     @markers = []
@@ -20,11 +23,11 @@ class PagesController < ApplicationController
           if test_distance < 0.4 && company != meeting_company
             if @compteur < 5
               @companies_suggestion.push(company)
-              @markers_prospect.push({
-                lat: company.latitude,
-                lng: company.longitude,
-                info_window_html: render_to_string(partial: "info_window", locals: { company: company})
-              })
+              # @markers_prospect.push({
+              #   lat: company.latitude,
+              #   lng: company.longitude,
+              #   info_window_html: render_to_string(partial: "info_window", locals: { company: company})
+              # })
             end
             @compteur += 1
           end
@@ -111,8 +114,6 @@ class PagesController < ApplicationController
       redirect_to root_path, notice: 'Note updated successfully.'
     end
   end
-
-  private
 
   def note_params
     params.require(:note).permit(:title, :content)

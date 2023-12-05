@@ -7,10 +7,10 @@ export default class extends Controller {
   static values = {
     apiKey: String,
     markers: Array,
-    markersProspect: Array
+    markersProspect: Array,
+    nextMeeting: Array
   }
   connect() {
-
     this.markers = []
     mapboxgl.accessToken = this.apiKeyValue
     this.map = new mapboxgl.Map({
@@ -31,12 +31,10 @@ export default class extends Controller {
           .setLngLat([longitude, latitude])
           .addTo(this.map);
 
-        const coordinates = this.markersValue.map((marker) => {
-          return [marker.lng, marker.lat]
-        })
+        const coordinates = [[this.nextMeetingValue[0].lng, this.nextMeetingValue[0].lat]]
 
         coordinates.unshift(start);
-
+        console.log(this.nextMeetingValue)
         console.log(coordinates);
 
         fetch(
