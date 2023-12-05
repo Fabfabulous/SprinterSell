@@ -60,7 +60,7 @@ gem 'flatpickr'
 gem "sidekiq", "~> 6.5.5"
 gem "sidekiq-failures", "~> 1.0"
 gem "cloudinary"
-
+gem "ruby-openai"
 
 group :development, :test do
   gem "dotenv-rails"
