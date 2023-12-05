@@ -1,5 +1,5 @@
 class Company < ApplicationRecord
-  has_many :contacts, dependent: :destroy
+  has_one :contact, dependent: :destroy
   has_many :meetings, dependent: :destroy
   has_many :notes, dependent: :destroy
   enum status: [ :prospect, :client, :to_visit ]
