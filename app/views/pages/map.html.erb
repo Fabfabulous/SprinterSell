@@ -1,14 +1,10 @@
 <div class="container" data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-  <div class="vertical-list" >
-    <div class="">
-      <%= render 'filter', company: @company %>
-      <%= link_to "Reset Filter", root_path, class: "btn btn-outline-primary" %>
-    </div>
+  <div class="vertical-list b-radius-l" >
     <div>
       <%= form_with url: map_path, method: :get, html: {class:
-      "m-3", data: {map_target: "form"}} do |f| %>
+      "input", data: {map_target: "form"}} do |f| %>
       <%= f.text_field :query,
                     class: "form-control",
                     placeholder: "Type a company name",
@@ -17,12 +13,19 @@
                     action: "keyup->map#update"} %>
       <% end %>
     </div>
-    <div data-map-target="list">
-      <%= render partial: "company-list", locals: { companies: @companies_all, type: "card" } %>
-
+    <div data-map-target="list", class="full-list">
+      <%= render "company-list", companies: @companies_all %>
     </div>
   </div>
-  <div style="width: 100%; height: 100%;" data-map-target="map">
+  <div class="map_right b-radius-l">
+    <h4 class="title-map">Map</h4>
+    <p>Find new oppotunities in your area</p>
+    <div class="button-map">
+        <%= link_to "Prospect", request.params.merge(status: 0), class: 'btn-filter' %>
+        <%= link_to "Client", request.params.merge(status: 1), class: 'btn-filter' %>
+        <%= link_to "To_visit", request.params.merge(status: 2), class: 'btn-filter' %>
+    </div>
+    <div style="width: 100%; height: 85%;" data-map-target="map"></div>
   </div>
 </div>
 
