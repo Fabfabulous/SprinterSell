@@ -18,6 +18,12 @@ CompaniesapiJob.perform_now
 
 puts "!!!  START COMPANY/CONTACT CREATION  !!!"
 
+25.times do
+  companie = Company.where(status: 0).sample
+  companie.status = "client"
+  companie.save
+end
+
 Company.all.each do |company|
   puts "company status: #{company.status}"
   if company.status == "client"
