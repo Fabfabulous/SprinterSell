@@ -1,13 +1,20 @@
-<h4 class="title-topbar">Agenda</h4>
-<p>What is happening todday?</p>
+<div class="top-agenda">
+  <div class="agenda-top-right">
+    <h4 class="title-agenda">Agenda</h4>
+    <p class="p-header-agenda">What is happening todday?</p>
+  </div>
+  <div class="display-date">
+      <h4 class="title-agenda"><i class="fa-regular fa-calendar-days"></i></h4>
+      <h4 class="title-agenda"><%= Date.today.strftime('%d/%m/%Y') %></h4>
+  </div>
+</div>
 <% (meetings).each do |meeting| %>
-  <div class="">
+  <div class="meetings">
     <%= render meeting %>
   </div>
-  <div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMeetingModal">
+  <div class="fa-plus-center">
+    <button type="button" class="btn-primary-rounded" data-bs-toggle="modal" data-bs-target="#newMeetingModal">
      <i class="fa-solid fa-plus"></i>
-     Add a meeting
     </button>
   </div>
 <% end %>

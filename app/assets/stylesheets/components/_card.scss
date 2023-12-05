@@ -76,3 +76,80 @@
 .cartes::-webkit-scrollbar-track {
   background: #edf2f4;
 }
+// Carte meeting
+
+.meetings {
+  padding: 16px;
+}
+.carte-meeting {
+  display: flex;
+  width: 100%;
+  height: 94px;
+  margin-top: 1px;  
+  margin-bottom: 1px;
+  color: white;
+  align-items: center;
+  padding: 16px 0;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.carte-meeting-hours {
+  border-right: 1px solid white;
+  height: fit-content;
+  flex-basis: 10%;
+  padding-right: 16px;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.carte-meeting-company {
+  padding-left: 16px;
+  flex-basis: 20%;
+}
+
+.carte-meeting-actions {
+  flex-basis: 8%;
+  text-align: right;
+}
+
+.carte-meeting-contact {
+  // flex-basis: 40%;
+  flex-grow: 1;
+  text-align: right;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.carte-left {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  height: 100%;
+  justify-content: flex-start;
+}
+
+.carte-right {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.carte-display-contact {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: start;
+}
+
+.fa-plus-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
