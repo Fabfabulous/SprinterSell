@@ -76,3 +76,11 @@ p {
   color: var(--text-color-w);
   margin: 0;
 }
+
+.p-left {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-color-w);
+  margin: 0 auto;
+  text-align: left;
+}
