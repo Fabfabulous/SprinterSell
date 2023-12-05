@@ -1,0 +1,56 @@
+<div class="modal fade" id="company<%= company.id %>Modal" tabindex="-1" aria-labelledby="companyModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <div class="modal-company-top">
+        <div class="bar <%= company.status %> "></div>
+        <div>
+          <h1 class="modal-title fs-5 mb-3" id="companyModal"><%= company.name %></h1>
+          <div class="company-card">
+            <i class="fa-solid fa-address-card me-3"></i>
+            <div class="company-info">
+              <div>
+                <p class="p-bold mb-1"> <%= company.address %></p>
+                <p class="p-small"> <%= company.zip_code  %>, <%= company.city %></p>
+              </div>
+              <div class="company-right">
+                <p class="p-bold mb-1"> Code Naf <%= company.code_naf %></p>
+                <p class="p-small"> Company size: <%= company.company_size %> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% if company.contact.present? %>
+        <div>
+          <div class="modal-contact-info">
+            <i class="fa-solid fa-address-book"></i>
+            <div class="all-contact-info">
+              <div>
+                <p class="p-bold text-black"><%= company.contact.first_name %> <%= company.contact.last_name %></p>
+                <p class="p-small text-black"><%= company.contact.function %></p>
+              </div>
+              <div>
+                <div class="display-info">
+                  <p class="p-small text-black"><%= company.contact.phone_number %></p>
+                  <i class="fa-solid fa-phone  ms-2"></i>
+                </div >
+                <div class="display-info">
+                  <p class="p-small text-black"><%= company.contact.email %></p>
+                  <i class="fa-solid fa-envelope ms-2"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

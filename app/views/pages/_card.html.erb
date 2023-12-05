@@ -1,16 +1,19 @@
-<div class="carte">
-  <div class="carte-infos">
-    <div class="l-side">
-      <div class="bar <%= company.status %> "></div>
-      <div>
-        <p class="p-bold"><%= company.name %></p>
-        <p class="p-small">Naf/APE: <%= company.code_naf %></p>
+<a class="" data-bs-toggle="modal" data-bs-target="#company<%= company.id %>Modal">
+  <div class="carte">
+    <div class="carte-infos">
+      <div class="l-side">
+        <div class="bar <%= company.status %> "></div>
+        <div>
+          <p class="p-bold"><%= company.name %></p>
+          <p class="p-small">Naf/APE: <%= company.code_naf %></p>
+        </div>
+      </div>
+      <div class="text-right">
+        <p class="p-small-b"><%= company.city %> </p>
+        <p class="p-small">Company-size: <%= company.company_size %></p>
       </div>
     </div>
-    <div class="text-right">
-      <p class="p-small-b"><%= company.city %> </p>
-      <p class="p-small">Company-size: <%= company.company_size %></p>
-    </div>
-      <button type="button" class="fa-solid fa-calendar-days no-style" style="color: #ffd43b;" data-bs-toggle="modal" data-bs-target="#exampleModal">
   </div>
-</div>
+</button>
+
+<%= render 'modal-company-card', company: company %>

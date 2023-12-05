@@ -1,8 +1,68 @@
-
 .info {
   background-color: var(--primary-purple);
   padding: 16px;
   border-radius: 8px;
   width: 100%;
   color: var(--white);
+}
+
+.modal-content {
+  background-color: var(--dark-grey) !important;
+}
+
+.modal-company-top {
+display: flex;
+}
+
+.modal-body {
+  color: var(--text-color-w) !important;
+}
+
+.company-card {
+  display: flex;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.company-info {
+  margin-left: 6px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.modal-header {
+  border-bottom: var(--bs-modal-header-border-width) solid var(--dark-grey)  !important;
+}
+
+.btn-close {
+  color: var(--text-color-w) !important;
+}
+
+.company-right {
+  align-items: end;
+  text-align: right;
+}
+
+.modal-contact-info {
+  background-color: var(--light-grey);
+  color: var(--text-color);
+  width: 100%;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.display-info {
+  display: flex;
+  align-items: end;
+}
+
+.all-contact-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-black {
+ color: var(--text-color);
 }
