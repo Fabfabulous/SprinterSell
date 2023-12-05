@@ -7,31 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-require "csv"
 
 Contact.destroy_all
 Meeting.destroy_all
 Company.destroy_all
 User.destroy_all
 
-filepath = "db/migrate/company_data_20.csv"
 
+CompaniesapiJob.perform_now
 
 puts "!!!  START COMPANY/CONTACT CREATION  !!!"
-CSV.foreach(filepath, headers: :first_row) do |row|
-  company = Company.new(
-    name: row['name'],
-    address: row['address'],
-    zip_code: row['zip_code'],
-    city: row['city'],
-    latitude: row['latitude'],
-    longitude: row['longitude'],
-    status: row['status'].to_i,
-    company_size: row['company_size'],
-    code_naf: "8559A"
-  )
-  company.save!
 
+Company.all.each do |company|
   puts "company status: #{company.status}"
   if company.status == "client"
     contact = Contact.new(
@@ -59,11 +46,11 @@ user = User.new(
 user.save!
 p "création user terminée"
 
-date = Time.now
+date = Time.now - 1.days
 compte = 0
 
 p "création meetings"
-14.times do
+18.times do
   date_meeting = (date + ((compte * 86400) / 2)).change({ hour: (8..17).to_a.sample, min: 0, sec: 0 })
   meeting = Meeting.new(
     title: Faker::DcComics.title,
