@@ -28,9 +28,6 @@ class PagesController < ApplicationController
         end
       end
     end
-    @markers_prospect = @markers_prospect
-    @companies_prospect = Company.limit(5).where(status: 0)
-    @companies_prospect_to_visit = Company.where(status: 2)
   end
 
   def map
@@ -88,7 +85,7 @@ class PagesController < ApplicationController
     dlon = lon2_rad - lon1_rad
 
     # Calcul de la distance en utilisant la formule Haversine
-    a = Math.sin(dlat / 2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon / 2)**2
+    a = (Math.sin(dlat / 2)**2) + (Math.cos(lat1_rad) * Math.cos(lat2_rad) * (Math.sin(dlon / 2)**2))
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 
     # Rayon de la Terre en kilomètres
