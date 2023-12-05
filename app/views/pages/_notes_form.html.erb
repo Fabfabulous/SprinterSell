@@ -1,8 +1,9 @@
 <div data-controller="notes">
-  <%= simple_form_for :note, url: save_note_path, method: :patch do |f| %>
+  <%= simple_form_for Note.new do |f| %>
     <%= f.input :company_id, collection: Company.all, label: 'Company' %>
     <%= f.input :title %>
     <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here' %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, 'SAVE', class: 'btn btn-primary' %>
   <% end %>
 </div>

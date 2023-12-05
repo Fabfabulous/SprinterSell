@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
     @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day).order(date: :asc)
     @companies = @meetings.map(&:company)
-    @next_meeting = Meeting.where('date >= ? AND date < ?', DateTime.current, DateTime.current.end_of_day).order(date: :asc).first  
+    @next_meeting = Meeting.where('date >= ? AND date < ?', DateTime.current, DateTime.current.end_of_day).order(date: :asc).first
     unless @next_meeting.nil?
       @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
       @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
@@ -97,18 +97,5 @@ class PagesController < ApplicationController
     distance = r * c
 
     return distance
-  end
-
-  def save_note
-    @company = Company.find(params[:note][:company_id])
-    @note = Note.new(note_params)
-    @note.company_id = @company.id
-    if @note.save
-      redirect_to root_path, notice: 'Note updated successfully.'
-    end
-  end
-
-  def note_params
-    params.require(:note).permit(:title, :content)
   end
 end
