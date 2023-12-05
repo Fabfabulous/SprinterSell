@@ -38,8 +38,8 @@ class PagesController < ApplicationController
 
   def map
     @markers = []
-    if params[:filter].present? && params[:filter][:status] != ""
-      @companies_all = Company.where('status = ? ', params[:filter][:status]).limit(10)
+    if params[:status].present?
+      @companies_all = Company.where('status = ? ', params[:status]).limit(10)
     elsif params[:query].present?
       @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(10)
     else

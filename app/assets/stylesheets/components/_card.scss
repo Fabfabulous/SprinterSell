@@ -1,53 +1,19 @@
-// .cartes {
-//   display: flex;
-//   width: 100%;
-//   height: 90px;
-//   gap: 0.5em;
-//   justify-content: space-around;
-//   padding: 6px;
-//   overflow-x: scroll;
-//   scroll-snap-type: x mandatory;
-// }
 
-// .carte {
-//   display: flex;
-//   flex-direction: row;
-//   align-items: center;
-//   justify-content: space-around;
-//   width: 140px;
-//   height: 60px;
-//   padding: 0;
-//   margin: 0;
-//   flex-shrink: 0;
-//   background: white;
-//   border-radius: 8px;
-//   box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-//   scroll-snap-align: center;
-// }
 
-// .carte h2 {
-//   font-size: 8px;
-//   font-weight: bold;
-//   margin: 0;
-// }
-
-// .carte p {
-//   font-size: 12px;
-//   opacity: .7;
-//   margin-bottom: 0;
-//   margin-top: 8px;
-// }
-
-// .carte img {
-//   width: 50px;
-//   height: 50px;
-//   object-fit: cover
-// }
-.vl {
-  border-left: 6px solid rgb(0, 68, 253);
+.bar {
   height: 100%;
   margin-right: 8px;
   border-radius: 8px;
+  &.client {
+    border-left: 6px solid #63e6be ;
+  }
+  &.prospect {
+    border-left: 6px solid #ff8787 ;
+  }
+
+  &.to_visit {
+    border-left: 6px solid #74c0fc ;
+  }
 }
 
 .l-side {
@@ -60,29 +26,27 @@
 
 .carte-infos {
   display: flex;
-  width: 70px;
-  height: 50px;
+  justify-content: space-between;
   width: 100%;
+  height: 65px;
+  margin-bottom: 16px;
 }
 
+.full-list {
+  margin-bottom: 20px;
+}
 .cartes {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   padding: 16px 6px;
   width: 100%;
-  margin: 8px;
+  border-bottom : 1px solid #fff;
 }
 
-.carte {
-  display: flex;
-  flex-direction: row;
-  // flex: 0 0 100%;
-  padding: 20px;
-  background-color: var(--dark-grey);
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-  scroll-snap-align: start;
-  transition: all 0.2s;
+.input {
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .carte:not(:last-child) {
@@ -96,7 +60,7 @@
 
 .cartes::-webkit-scrollbar-thumb,
 .cartes::-webkit-scrollbar-track {
-  border-radius: 92px;
+  border-radius: 10px;
 }
 
 .cartes::-webkit-scrollbar-thumb {
