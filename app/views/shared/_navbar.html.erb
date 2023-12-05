@@ -4,30 +4,30 @@
     <div class="info-profile">
       <%= image_tag 'profil.png', class:"img-profile"%>
       <div class="name-function">
-        <p class="name p-ultra-small-b ">Remi lavigne</p>
-        <p class="function p-ultra-small">Sales representative</p>
+        <p class="name p-bold ">Remi lavigne</p>
+        <p class="function p-small">Sales representative</p>
       </div>
     </div>
     <hr/>
     <div class="hello">
-      <div class="btn-primary b-radius-s ">
+      <div class="btn-primary b-radius">
         <i class="fa-solid fa-house"></i>
         <%= link_to "Home", root_path(), class:"btn-text"%>
       </div>
-      <div class="btn-primary b-radius-s ">
+      <div class="btn-primary b-radius">
         <i class="fa-solid fa-map"></i>
         <%= link_to "Map", map_path, class:"btn-text"%>
       </div>
     </div>
   </div>
   <div class="bottom-sidebar">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#notesModal">
+    <button type="button" class="btn-primary" data-bs-toggle="modal" data-bs-target="#notesModal">
       <i class="fa-solid fa-pen-to-square"></i>
         Notes
     </button>
-    <div class="btn-logout b-radius-s outline-gray">
+    <div class="no-style btn-logout b-radius outline-gray">
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn-remove"%>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete %>
     </div>
   </div>
 </div>
