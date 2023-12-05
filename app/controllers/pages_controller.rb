@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
   def home
-    @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day)
+    @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day).order(date: :asc)
     @companies = @meetings.map(&:company)
-    @next_meeting = Meeting.where('date >= ?', DateTime.now).order(date: :asc).first
-    @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
-    @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
+    @next_meeting = Meeting.where('date >= ? AND date < ?', DateTime.current, DateTime.current.end_of_day).order(date: :asc).first  
+    unless @next_meeting.nil?
+      @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
+      @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
+    end
     @companies_suggestion = []
     @markers = []
     @companies.each do |meeting_company|
@@ -28,9 +30,6 @@ class PagesController < ApplicationController
         end
       end
     end
-    @markers_prospect = @markers_prospect
-    @companies_prospect = Company.limit(5).where(status: 0)
-    @companies_prospect_to_visit = Company.where(status: 2)
   end
 
   def map
@@ -88,7 +87,7 @@ class PagesController < ApplicationController
     dlon = lon2_rad - lon1_rad
 
     # Calcul de la distance en utilisant la formule Haversine
-    a = Math.sin(dlat / 2)**2 + Math.cos(lat1_rad) * Math.cos(lat2_rad) * Math.sin(dlon / 2)**2
+    a = (Math.sin(dlat / 2)**2) + (Math.cos(lat1_rad) * Math.cos(lat2_rad) * (Math.sin(dlon / 2)**2))
     c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 
     # Rayon de la Terre en kilomètres

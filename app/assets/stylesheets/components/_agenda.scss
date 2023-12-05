@@ -1,0 +1,28 @@
+.top-agenda {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.agenda-top-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.display-date {
+  display: flex;
+  flex-direction: row;
+}
+
+.title-agenda {
+  color: var(--text-color-w);
+  padding: 6px;
+  margin: 6px;
+}
+
+.p-header-agenda {
+  color: var(--text-color-w);
+  padding: 6px;
+}
