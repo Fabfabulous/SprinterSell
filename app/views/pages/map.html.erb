@@ -30,4 +30,8 @@
 </div>
 
 <!-- Modal -->
-<%= render 'meetings/modale_meeting', meeting: Meeting.new, modal_id: 'newMeetingModal' %>
+<%= render partial: 'meetings/modale_meeting', locals: { modal_id: 'newMeetingModal', company_id: "" } %>
+
+<% @companies_all.each do |company| %>
+  <%= render partial: 'meetings/modale_meeting',  locals: { modal_id: "newMeetingModal#{company.id}", company_id: company.id } %>
+<% end %>
