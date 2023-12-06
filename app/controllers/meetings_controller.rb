@@ -19,10 +19,15 @@ class MeetingsController < ApplicationController
     @meeting.user = current_user
     # @company = Company.find(params[:id])
     # recuperer une company et lui associer un meeting
-    if @meeting.save
-      redirect_to root_path()
+    sql_query = "date > :start AND date < :end OR hour > :start AND hour < :end"
+    if Meeting.where(sql_query, start: @meeting.date, end: @meeting.hour).empty?
+      if @meeting.save
+        redirect_to root_path
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, notice: "You already have a meeting at this time "
     end
   end
 

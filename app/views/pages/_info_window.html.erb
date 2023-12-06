@@ -1,8 +1,8 @@
 <div>
   <p class="p-bold text-black"><%= company.name %></p>
-   <p class="p-small text-black"><%= company.address %></p>
+  <p class="p-small text-black"><%= company.address %></p>
   <div>
-    <a class="btn-primary-s" data-bs-toggle="modal" data-bs-target="#newMeetingModal">
+    <a class="btn-primary-s" data-bs-toggle="modal" data-bs-target="#newMeetingModal<%= company.id %>">
       <i class="fa-solid fa-plus"></i>
         Add a meeting
     </a>
