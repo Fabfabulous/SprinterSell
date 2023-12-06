@@ -56,7 +56,8 @@ date = Time.now - 1.days
 compte = 0
 
 p "création meetings"
-18.times do
+loop do
+  meeting_number = Meeting.count
   date_meeting = (date + ((compte * 86400) / 2)).change({ hour: (8..17).to_a.sample, min: 0, sec: 0 })
   meeting = Meeting.new(
     title: Faker::DcComics.title,
@@ -67,9 +68,14 @@ p "création meetings"
   meeting.user = User.first
   meeting.company = Company.all.sample
   meeting.contact = Contact.all.sample if rand(2).zero?
-  meeting.save!
-  p "#{meeting}"
-  compte += 1
+  sql_query = "date > :start AND date < :end AND hour > :start AND hour < :end"
+  meeting.save! if Meeting.where(sql_query, start: meeting.date, end: meeting.hour).empty?
+
+  p meeting
+  unless meeting_number == Meeting.count
+    compte += 1
+    break if Meeting.count == 14
+  end
 end
 
 puts "!!!  FINISH COMPANY/CONTACT/MEETINGS CREATION  !!!"
