@@ -26,15 +26,12 @@ export default class extends Controller {
         const longitude = position.coords.longitude;
         const start     = [longitude, latitude];
 
-        new mapboxgl.Marker({ color: 'green' }) // change color marker
+        const markerGeoLoc = new mapboxgl.Marker({ color: 'green' }) // change color marker
           .setLngLat([longitude, latitude])
           .addTo(this.map);
-
+          this.#fitMapToMarkers(markerGeoLoc)
         const coordinates = [[this.nextMeetingValue[0].lng, this.nextMeetingValue[0].lat]]
-
         coordinates.unshift(start);
-        console.log(this.nextMeetingValue)
-        console.log(coordinates);
 
         fetch(
           `https://api.mapbox.com/directions/v5/mapbox/driving-traffic/${coordinates.join(';')}?geometries=geojson&access_token=${mapboxgl.accessToken}`,
@@ -71,11 +68,12 @@ export default class extends Controller {
               }
             });
           })
+          console.log("TEDST",markerGeoLoc)
+
       });
     } else {
       console.log("La géolocalisation n'est pas supportée par ce navigateur");
     }
-    this.#fitMapToMarkers()
   }
 
   #createMarkersToMap() {
@@ -96,8 +94,9 @@ export default class extends Controller {
     })
   }
 
-  #fitMapToMarkers() {
+  #fitMapToMarkers(markerGeoLoc) {
     const bounds = new mapboxgl.LngLatBounds()
+    bounds.extend([ markerGeoLoc._lngLat.lng, markerGeoLoc._lngLat.lat ])
     this.markersValue.forEach(marker => bounds.extend([ marker.lng, marker.lat ]))
     this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })
   }
@@ -105,7 +104,6 @@ export default class extends Controller {
 
   update() {
     const url = `${this.formTarget.action}?query=${this.inputTarget.value}`
-    console.log(url)
     fetch(url, {
         headers:{
           "Accept": "application/json"
@@ -113,7 +111,6 @@ export default class extends Controller {
       })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
         this.listTarget.innerHTML = data.companies_html
         this.#addMarkersToMap(data.markers, [])
       })
