@@ -29,8 +29,8 @@ export default class extends Controller {
         const markerGeoLoc = new mapboxgl.Marker({ color: 'green' }) // change color marker
           .setLngLat([longitude, latitude])
           .addTo(this.map);
+          this.#fitMapToMarkers(markerGeoLoc)
         const coordinates = [[this.nextMeetingValue[0].lng, this.nextMeetingValue[0].lat]]
-
         coordinates.unshift(start);
 
         fetch(
@@ -68,7 +68,8 @@ export default class extends Controller {
               }
             });
           })
-          this.#fitMapToMarkers(markerGeoLoc)
+          console.log("TEDST",markerGeoLoc)
+
       });
     } else {
       console.log("La géolocalisation n'est pas supportée par ce navigateur");
