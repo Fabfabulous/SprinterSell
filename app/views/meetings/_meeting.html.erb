@@ -13,19 +13,13 @@
     <% end %>
   </div>
   <div class="carte-meeting-actions">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#noteModal<%= meeting.company.id %>" class="no-style fa-regular fa-clipboard" style="color: #ffd43b">
+    </button>
     <button type="button" data-bs-toggle="modal" data-bs-target="#editMeetingModal" class="no-style fa-regular fa-pen-to-square" style="color: #ffd43b">
     </button>
-    <%# <button type= "button" >
-      <i class="fa-solid fa-trash" style="color: #ffd43b;"></i>
-    </button> %>
     <%= button_to '', meeting_path(meeting), method: :delete, class:"no-style fa-solid fa-trash", style:"color: #ffd43b", data: { confirm: 'Are you sure you want to delete this meeting?' }  %>
   </div>
 </div>
-
-
-<!-- Modal -->
-<%# <%= render 'meetings/modale_meeting', meeting: meeting, modal_id: 'editMeetingModal' %> %>
-
 
 
 <div class="modal fade" id="<%= "editMeetingModal" %>" tabindex="-1" aria-labelledby="meetingModalLabel" aria-hidden="true">
@@ -41,3 +35,6 @@
     </div>
   </div>
 </div>
+
+
+<%= render partial: 'meetings/note_form_meeting',  locals: { company: meeting.company } %>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="company<%= company.id %>Modal" tabindex="-1" aria-labelledby="companyModal" aria-hidden="true">
+<div class="modal fade" id="note<%= meeting.id %>Modal" tabindex="-1" aria-labelledby="noteMeetingModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -7,7 +7,7 @@
       <div class="modal-body">
       <div class="modal-company-top <%= company.status %> ">
         <div class="width">
-          <h1 class="modal-title fs-5 mb-3" id="companyModal"><%= company.name %></h1>
+          <h1 class="modal-title fs-5 mb-3" id="noteMeetingModal"><%= company.name %></h1>
           <div class="company-card">
             <i class="fa-solid fa-address-card me-2"></i>
             <div class="company-info">
@@ -46,17 +46,15 @@
           </div>
         </div>
       <% end %>
-      <% company.notes.each do |note| %>
-        <div class="note-section">
-          <h4 class="mb-3"><%= note.title%></h4>
-          <div class="note-aperçu b-radius">
-            <p class="p-small-b ">created at 01/02/2025</p>
-            <div class="aperçu">
-              <p class="p-small text-black "><%= note.content%></p>
-            </div>
-            </div>
+      <div class="note-section">
+        <h4 class="mb-3">Notes</h4>
+        <div class="note-aperçu b-radius">
+          <p class="p-small-b ">created at 01/02/2025</p>
+          <div class="aperçu">
+            <p class="p-small text-black ">Title title tile</p>
           </div>
-      <% end %>
+        </div>
+      </div>
       </div>
       <div class="modal-footer">
         <a class="btn-primary" data-bs-toggle="modal" data-bs-target="#newMeetingModal">

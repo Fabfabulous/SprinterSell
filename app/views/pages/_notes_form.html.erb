@@ -2,9 +2,7 @@
   <div data-controller="notes">
     <%= simple_form_for Note.new do |f| %>
       <input type="text" placeholder="KPMG" data-action="keyup->filter#filter">
-      <div data-filter-target="list", class="full-list">
-        <%= render "note_company_list", companies: Company.all %>
-      </div>
+
       <%= f.input :title %>
       <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here', input_html: { data: { notes_target: "note"} } %>
       <button data-notes-target="helpButton" data-action="click->notes#rephrase">Help me</button>

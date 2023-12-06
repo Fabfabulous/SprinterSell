@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="bottom-sidebar">
-    <a class="btn-primary" data-bs-toggle="modal" data-bs-target="#notesModal">
+    <a class="btn-primary" data-bs-toggle="modal" data-bs-target="#noteModal">
       <i class="fa-solid fa-pen-to-square me-2"></i>
       Notes
     </a>
@@ -31,18 +31,4 @@
 </div>
 
 
-
-<!-- Modal -->
-<div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="notesModalLabel">Notes</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <%= render 'pages/notes_form'%>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render partial: 'meetings/note_form_meeting',  locals: { company: "" } %>
