@@ -3,7 +3,10 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="notes"
 export default class extends Controller {
   static targets = ['helpButton', "note", "companyId"]
-
+  connect() {
+    console.log("coucou from notes");
+  }
+  
   rephrase() {
     event.preventDefault();
     const note = this.noteTarget.value;

@@ -13,7 +13,7 @@ class NotesController < ApplicationController
     else
       @notice = "Note pas ajoutée"
     end
-    redirect_to root_path
+    redirect_to root_path, notice: @notice
   end
 
   private
