@@ -12,9 +12,9 @@
               <% if company.present? %>
                 <input type="hidden" name="note[company_id]" value="<%= company.id %>">
               <% else %>
-                <input type="text" placeholder="KPMG" data-action="keyup->filter#filter">
+                <input type="text" placeholder="KPMG" data-action="keyup->filter#filter" class="form-control">
                 <div data-filter-target="list", class="full-list">
-                  <%= render "note_company_list", companies: Company.all %>
+                  <%= render "pages/note_company_list", companies: Company.all.limit(5) %>
                 </div>
               <% end %>
               <%= f.input :title %>
