@@ -56,7 +56,7 @@
   background-color: black;
 }
 
-.hello {
+.home-button{
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -64,6 +64,7 @@
   justify-content: space-between;
   width: 100%;
   height: 100px;
+  gap: 16px;
 }
 
 .bottom-sidebar {
@@ -74,4 +75,5 @@
   justify-content: space-between;
   width: 100%;
   height: 100px;
+  gap: 6px;
 }

@@ -5,10 +5,17 @@
   justify-content: space-between;
   background-color: var(--dark-grey);
   margin: 8px;
-  padding: 10px 14px;
+  padding: 16px;
 }
 
 
 .title-topbar {
+  font-size: 18px;
   color: var(--text-color-w);
+}
+
+.logo-topbar {
+  width: 36px;
+  height: 36px;
+  object-fit: fill;
 }

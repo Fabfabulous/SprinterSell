@@ -3,6 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
+  margin-top: 24px;
+  padding: 16px;
 }
 
 .agenda-top-right {
@@ -11,18 +13,29 @@
   justify-content: flex-start;
 }
 
+.itinerary-top-right {
+  margin-top: 24px;
+}
+
 .display-date {
   display: flex;
   flex-direction: row;
 }
 
+.title-itinerary {
+  color: var(--text-color-w);
+}
+
 .title-agenda {
   color: var(--text-color-w);
-  padding: 6px;
-  margin: 6px;
 }
+
 
 .p-header-agenda {
   color: var(--text-color-w);
-  padding: 6px;
+}
+
+.p-header-itinerary {
+  align-items: left;
+  color: var(--text-color-w);
 }

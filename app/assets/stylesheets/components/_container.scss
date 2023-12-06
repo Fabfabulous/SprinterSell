@@ -11,12 +11,22 @@
   height: 100%;
 }
 
+.login-container{
+  width: 100%;
+  background-color: var(--dark-grey);
+  border-radius: 16px;
+  margin-left: 8px;
+  margin-left: 8px;
+  padding: 16px;
+  color: var(--text-color-w);
+}
 .custom-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 100%;
-  padding: 0 14px 10px 14px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .container-map {
@@ -35,12 +45,11 @@
 }
 
 .home-right {
-
-  display: flex;
   width: 50%;
   height: 100%;
   margin-right: 8px;
   background-color: var(--dark-grey);
+  padding: 16px;
 }
 
 .agenda {

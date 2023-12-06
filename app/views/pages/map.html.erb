@@ -1,10 +1,10 @@
-<div class="container" data-controller="map"
+<div class="container-map" data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
   <div class="vertical-list b-radius-l" >
     <div>
       <%= form_with url: map_path, method: :get, html: {class:
-      "input", data: {map_target: "form"}} do |f| %>
+      "input mb-4", data: {map_target: "form"}} do |f| %>
       <%= f.text_field :query,
                     class: "form-control",
                     placeholder: "Type a company name",

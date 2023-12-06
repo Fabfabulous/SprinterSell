@@ -14,11 +14,24 @@
 display: flex;
 width: 100%;
 margin-bottom: 16px;
-border-left: 6px solid red;
+  &.client {
+    border-left: 6px solid #63e6be ;
+    border-radius: 6px;
+  }
+  &.prospect {
+    border-left: 6px solid #ff8787 ;
+    border-radius: 6px;
+  }
+
+  &.to_visit {
+    border-left: 6px solid #74c0fc ;
+    border-radius: 6px;
+  }
 }
 
 .width {
   width: 100%;
+  margin-left: 6px;
 }
 
 .modal-body {
@@ -43,6 +56,11 @@ border-left: 6px solid red;
   border-bottom: var(--bs-modal-header-border-width) solid var(--dark-grey)  !important;
 }
 
+.modal-footer {
+  border-top: var(--bs-modal-header-border-width) solid var(--dark-grey)  !important;
+}
+
+
 .btn-close {
   color: var(--text-color-w) !important;
 }
@@ -58,13 +76,15 @@ border-left: 6px solid red;
   color: var(--text-color);
   width: 100%;
   border-radius: 6px;
-  padding: 16px;
+  padding: 16px 24px;
+  justify-content: space-between;
 }
 
 .display-info {
   width: 100%;
   display: flex;
-  float: right;
+  justify-content: right;
+  margin-bottom: 3px;
 }
 
 .all-contact-info {
@@ -79,5 +99,10 @@ border-left: 6px solid red;
 }
 
 .right-side-contact {
-  float: right;
+  justify-content: right;
+}
+
+.icon {
+  width: 15px;
+  height: 15px;
 }
