@@ -8,6 +8,7 @@ class PagesController < ApplicationController
       @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
     end
     @companies_suggestion = []
+    @travel_times = {}
     @markers = []
     @companies.each do |meeting_company|
       @compteur = 0
@@ -23,6 +24,7 @@ class PagesController < ApplicationController
           test_distance = haversine_distance(meeting_company.latitude, meeting_company.longitude, company.latitude, company.longitude)
           if test_distance < 0.4 && company != meeting_company
             if @compteur < 5
+              @travel_times[company.name.to_sym] = {distance: (test_distance * 1000).to_i, meeting: meeting_company.name}
               @companies_suggestion.push(company)
             end
             @compteur += 1
