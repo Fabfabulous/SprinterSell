@@ -5,12 +5,11 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      <div class="modal-company-top">
-        <div class="toto <%= company.status %> "></div>
+      <div class="modal-company-top <%= company.status %> ">
         <div class="width">
           <h1 class="modal-title fs-5 mb-3" id="companyModal"><%= company.name %></h1>
           <div class="company-card">
-            <i class="fa-solid fa-address-card me-3"></i>
+            <i class="fa-solid fa-address-card me-2"></i>
             <div class="company-info">
               <div>
                 <p class="p-bold mb-1"> <%= company.address %></p>
@@ -27,7 +26,7 @@
       <% if company.contact.present? %>
         <div>
           <div class="modal-contact-info">
-            <i class="fa-solid fa-address-book"></i>
+            <i class="fa-solid fa-address-book me-2"></i>
             <div class="all-contact-info">
               <div>
                 <p class="p-bold text-black"><%= company.contact.first_name %> <%= company.contact.last_name %></p>
@@ -36,11 +35,11 @@
               <div class="right-side-contact">
                 <div class="display-info">
                   <p class="p-small text-black"><%= company.contact.phone_number %></p>
-                  <i class="fa-solid fa-phone  ms-2"></i>
+                  <i class="fa-solid fa-phone icon ms-2"></i>
                 </div >
                 <div class="display-info">
                   <p class="p-small text-black"><%= company.contact.email %></p>
-                  <i class="fa-solid fa-envelope ms-2"></i>
+                  <i class="fa-solid fa-envelope icon ms-2"></i>
                 </div>
               </div>
             </div>
@@ -48,9 +47,9 @@
         </div>
       <% end %>
       <div class="note-section">
-        <h2 class="mb-3">Notes</h2>
+        <h4 class="mb-3">Notes</h4>
         <div class="note-aperçu b-radius">
-          <p class="p-bold">created at 01/02/2025</p>
+          <p class="p-small-b ">created at 01/02/2025</p>
           <div class="aperçu">
             <p class="p-small text-black ">Title title tile</p>
           </div>
@@ -59,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <a class="btn-primary" data-bs-toggle="modal" data-bs-target="#newMeetingModal">
-         <i class="fa-solid fa-plus"></i>
+         <i class="fa-solid fa-plus me-2"></i>
             Add a meeting
         </a>
       </div>

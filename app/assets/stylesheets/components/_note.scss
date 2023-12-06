@@ -1,4 +1,6 @@
 .note-section {
+  border-top: 1px solid #515151;
+  padding-top: 16px;
   margin-top: 24px;
   margin-bottom: 24px;
 }
@@ -14,7 +16,7 @@
   background-color: var(--light-grey);
   border: 1px solid #F7F6F2;
   width: 150px;
-  height: 250px;
+  height: 150px;
   color: var(--dark-grey);
   flex-wrap: wrap;
 }

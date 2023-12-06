@@ -5,6 +5,22 @@
   width: 100%;
   text-align: center;
   gap: 6px;
+  border-radius: 6px;
+}
+
+.btn-primary-home {
+  padding: 8px 16px;
+  color: var(--text-color-w);
+  width: 100%;
+  text-align: center;
+  gap: 6px;
+  border-radius: 6px;
+  border: 1px solid #F7F6F2;
+}
+
+.btn-primary-home:active {
+  background-color: var(--primary-purple);
+  border: inherit;
 }
 
 .btn-primary-rounded {
@@ -32,11 +48,13 @@
 
 .btn-logout {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 4px;
+  padding: 8px 16px;
+  color: var(--text-color-w);
   width: 100%;
-  color: var(--text-color) ;
+  text-align: center;
+  gap: 6px;
+  border-radius: 6px;
+  border: 1px solid #F7F6F2;
 }
 
 .btn-remove {

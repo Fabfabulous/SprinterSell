@@ -9,15 +9,16 @@
 
 .vertical-list {
   overflow: scroll;
-  width: 50%;
+  width: 35%;
   height: 90vh;
   background-color: var(--dark-grey);
   padding: 16px;
-  margin-right: 8px
+  margin-right: 8px;
+  margin-left: 8px;
 }
 
 .map_right {
-  width: 100%;
+  width: 65%;
   height: 90vh;
   background-color: var(--dark-grey);
   padding: 16px;
