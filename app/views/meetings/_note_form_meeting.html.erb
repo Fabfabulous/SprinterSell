@@ -1,0 +1,31 @@
+<div class="modal fade" id="noteModal<%= company.id if company.present? %>" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="notesModalLabel">Notes <%= "pour #{company.name}" if company.present? %></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div data-controller="filter">
+          <div data-controller="notes">
+            <%= simple_form_for Note.new do |f| %>
+              <% if company.present? %>
+                <input type="hidden" name="note[company_id]" value="<%= company.id %>">
+              <% else %>
+                <input type="text" placeholder="KPMG" data-action="keyup->filter#filter" class="form-control">
+                <div data-filter-target="list", class="full-list">
+                  <%= render "pages/note_company_list", companies: Company.all.limit(5) %>
+                </div>
+              <% end %>
+              <%= f.input :title %>
+              <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here', input_html: { data: { notes_target: "note"} } %>
+              <button data-notes-target="helpButton" data-action="click->notes#rephrase">Help me</button>
+              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+              <%= f.button :submit, 'SAVE', class: 'btn btn-primary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
