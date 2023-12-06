@@ -1,7 +1,9 @@
 <div class="custom-container">
   <div class="home-left b-radius-l">
     <div class="agenda">
-      <%= render partial:"meetings/agenda", locals: { meetings: @meetings, companies: @companies_suggestion} %>
+      <%= render partial:"meetings/agenda", locals: { meetings: @meetings,
+                                                      companies: @companies_suggestion,
+                                                    } %>
     </div>
   </div>
   <div class="home-right b-radius-l">

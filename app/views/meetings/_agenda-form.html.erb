@@ -10,6 +10,8 @@
   <%= f.submit class:""%>
 
 <div class="suggestion-container">
-  <%= render partial: "company-list", locals: { companies: @companies_suggestion, type: "suggestion-card" }  %>
+  <% if @companies_all.nil? %>
+    <%= render partial: "company-list", locals: { companies: @companies_suggestion, type: "suggestion-card" }  %>
+  <% end %>
 </div>
 <% end %>

@@ -9,11 +9,11 @@
     </div>
     <div class="carte-company-meeting-left">
       <p class="p-bold"><%= company.name %></p>
-      <p class="p-small">Naf/APE: <%= company.code_naf %></p>
+      <p class="p-small"><%= company.city %></p>
     </div>
     <div class="carte-company-meeting-right">
-      <p class="p-small-b"><%= company.city %> </p>
-      <p class="p-small">Company-size: <%= company.company_size %></p>
+      <p class="p-small-b">à <%= @travel_times[company.name.to_sym][:distance] %>m </p>
+      <p class="p-small"> de <%= @travel_times[company.name.to_sym][:meeting] %></p>
     </div>
   </div>
 </label>

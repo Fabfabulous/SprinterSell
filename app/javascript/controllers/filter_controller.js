@@ -11,7 +11,7 @@ export default class extends Controller {
     fetch(`/search_company?query=${value}`)
     .then(response => response.json())
     .then(data => {
-      this.listTarget.innerHTML=data.companies_partial
+      this.listTarget.innerHTML= data.companies_partial
     })
   }
 }

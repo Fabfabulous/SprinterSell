@@ -1,6 +1,6 @@
 <% companies.each do |company| %>
 
-<input type="radio" name="meeting[company_id]" value="<%= company.id %>" class="radio-input" id="company_<%= company.id %>">
+<input type="radio" name="note[company_id]" value="<%= company.id %>" class="radio-input" id="company_<%= company.id %>" data-notes-target="companyId">
 
 <label for="company_<%= company.id %>" class="radio-label carte-company-meeting-master">
   <div class="carte-company-meeting-infos">
