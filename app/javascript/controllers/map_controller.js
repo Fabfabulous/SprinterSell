@@ -88,7 +88,7 @@ export default class extends Controller {
     })
     markers.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window_html)
-      const markerHTML = new mapboxgl.Marker({ color: 'blue' })
+      const markerHTML = new mapboxgl.Marker({ color: marker.color })
         .setLngLat([ marker.lng, marker.lat ])
         .setPopup(popup)
         .addTo(this.map)

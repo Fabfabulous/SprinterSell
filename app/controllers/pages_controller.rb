@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   def home
     @meetings = Meeting.where("date > ? AND date < ?", DateTime.now.at_beginning_of_day, DateTime.now.end_of_day).order(date: :asc)
     @companies = @meetings.map(&:company)
-    @next_meeting = Meeting.where('date >= ? AND date < ?', DateTime.current, DateTime.current.end_of_day).order(date: :asc).first  
+    @next_meeting = Meeting.where('date >= ? AND date < ?', DateTime.current, DateTime.current.end_of_day).order(date: :asc).first
     unless @next_meeting.nil?
       @gps_next_meeting = [{ lng: @next_meeting.company.longitude, lat: @next_meeting.company.latitude }]
       @waze_url = "https://www.waze.com/ul?ll=#{@gps_next_meeting.first[:lat]}%2C#{@gps_next_meeting.first[:lng]}&navigate=yes"
@@ -42,16 +42,27 @@ class PagesController < ApplicationController
       @companies_all = Company.limit(100)
     end
 
-    p params[:query]
 
     @companies_all.each do |company|
       next unless company.latitude?
+
+      marker_color = case company.status
+      when 'prospect'
+        '#FF8787 '
+      when 'client'
+        '#63E6bE'
+      when 'to_visit'
+        '#74C0FC'
+      else
+        '#FFD43B'
+      end
 
       @markers.push(
         {
           lat: company.latitude,
           lng: company.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { company: }, formats: [:html])
+          info_window_html: render_to_string(partial: "info_window", locals: { company: }, formats: [:html]),
+          color: marker_color
         }
       )
     end
