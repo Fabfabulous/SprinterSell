@@ -42,16 +42,27 @@ class PagesController < ApplicationController
       @companies_all = Company.limit(100)
     end
 
-    p params[:query]
 
     @companies_all.each do |company|
       next unless company.latitude?
+
+      marker_color = case company.status
+      when 'prospect'
+        '#FF8787 '
+      when 'client'
+        '#63E6bE'
+      when 'to_visit'
+        '#74C0FC'
+      else
+        '#FFD43B'
+      end
 
       @markers.push(
         {
           lat: company.latitude,
           lng: company.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { company: }, formats: [:html])
+          info_window_html: render_to_string(partial: "info_window", locals: { company: }, formats: [:html]),
+          color: marker_color
         }
       )
     end
