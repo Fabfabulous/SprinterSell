@@ -1,6 +1,9 @@
-<div data-controller="notes">
+<div data-controller="filter">
   <%= simple_form_for Note.new do |f| %>
-    <%= f.input :company_id, collection: Company.all, label: 'Company' %>
+    <input type="text" placeholder="KPMG" data-action="keyup->filter#filter">
+    <div data-filter-target="list", class="full-list">
+      <%= render "note_company_list", companies: Company.all %>
+    </div>
     <%= f.input :title %>
     <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here' %>
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>

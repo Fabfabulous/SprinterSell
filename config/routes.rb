@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :meetings
   get "map", to: "pages#map"
 
+  get "search_company", to: "companies#search_company"
+
   resources :notes, only:%i(create)
   # resources :note, only:%i(create)
   patch '/save_note', to: 'pages#save_note'

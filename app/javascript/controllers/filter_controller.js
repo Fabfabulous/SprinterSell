@@ -1,19 +1,17 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["submit"]
+  static targets = ["list"]
 
   connect() {
   }
 
-  getData(event){
-    // event.preventDefault();
-    // if (this.submitTarget.value === "Filter") {
-    //   this.submitTarget.classList.add("bg-success")
-    //   this.submitTarget.value = "Reset"
-    // } else {
-    //   this.submitTarget.classList.add("bg-primary")
-    //   this.submitTarget.value = "Filter"
-    // }
+  filter(event){
+    const value = event.currentTarget.value
+    fetch(`/search_company?query=${value}`)
+    .then(response => response.json())
+    .then(data => {
+      this.listTarget.innerHTML=data.companies_partial
+    })
   }
 }
