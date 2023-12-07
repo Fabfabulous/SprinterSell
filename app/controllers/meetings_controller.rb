@@ -49,7 +49,7 @@ class MeetingsController < ApplicationController
         if @meeting.save
         redirect_to root_path, alert: "You should arrive at this meeting at #{@meeting.date.strftime("%H:%M")}! "
         else
-          render :new, status: :unprocessable_entity
+         redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
         end
       elsif meeting_date_arrival && (meeting_date_arrival > next_meeting.date)
         @meeting.date -= meeting_date_arrival - next_meeting.date
