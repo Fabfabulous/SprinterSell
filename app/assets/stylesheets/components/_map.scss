@@ -33,11 +33,33 @@
   background-color: var(--white);
   color: var(--text-color);
   text-decoration: none;
+  width: 150px;
 }
 
 .button-map {
   width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 16px;
+}
+
+.btn-color-prospect {
+  background-color: var(--secondary-orange);
+  font-size: bold;
+  border-radius: 8px;
+  border-color: 1px solid #222223;
+}
+.btn-color-client {
+  background-color: var(--secondary-green);
+  font-size: bold;
+  border-radius: 8px;
+  border-color: 1px solid #222223;
+}
+.btn-color-all {
+  background-color: var(--primary-purple);
+  font-size: bold;
+  border-radius: 8px;
+  border-color: 1px solid #222223;
 }

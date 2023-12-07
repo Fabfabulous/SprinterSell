@@ -8,6 +8,10 @@
   border-radius: 6px;
 }
 
+.button-map {
+  width: 50%;
+  justify-content: center;
+}
 .btn-primary-home {
   padding: 8px 16px;
   color: var(--text-color-w);
@@ -16,6 +20,28 @@
   gap: 6px;
   border-radius: 6px;
   border: 1px solid #F7F6F2;
+}
+
+.btn-ai {
+  padding: 8px 16px;
+  color: var(--text-color);
+  background-color: var(--primary-yellow);
+  width: 100%;
+  text-align: center;
+  gap: 6px;
+  border-radius: 6px;
+}
+
+.btn-logout {
+  padding: 8px 16px;
+  color: var(--grey);
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 6px;
+  border-radius: 6px;
+  border: 1px solid #3f3f3f;
 }
 
 .btn-primary-home:active {
@@ -27,10 +53,10 @@
   background-color: var(--primary-purple) ;
   padding: 8px;
   color: var(--text-color-w);
-  width: 50px;
+  width: 150px;
   height: 50px;
-  border-radius: 50%;
-  margin-bottom: 20px;
+  border-radius: 6px;
+  gap: 6px;
 }
 
 .btn-primary-s {

@@ -3,10 +3,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="meetingModalLabel">New meeting</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="header-modale">
+          <h4>Add a new Meeting</h4>
+          <p>to your agenda</p>
+        </div>
+        <div class="info-purple">
+          <i class="fa-solid fa-info me-3"></i>
+          <p>The prospects below are close to your calendar meetings, select on of them and take the opportunity generate more leads!</p>
+        </div>
         <%= render partial: "meetings/agenda-form", locals: { company_id: company_id } %>
       </div>
     </div>
