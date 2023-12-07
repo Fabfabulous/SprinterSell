@@ -16,7 +16,9 @@ class MeetingsController < ApplicationController
     @user = current_user
     @meeting = Meeting.new(meeting_params)
     duration = meeting_params[:hour]
-    @meeting.hour = @meeting.date + duration.to_i.minutes
+    if meeting_params[:hour] && @meeting.date
+      @meeting.hour = @meeting.date + duration.to_i.minutes
+    end
     @meeting.user = @user
 
     company = @meeting.company
