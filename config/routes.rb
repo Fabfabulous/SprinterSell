@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   require "sidekiq/web"
   authenticate :user, ->(user) { user.admin? } do
     mount Sidekiq::Web => '/sidekiq'
+
+  get '/404', to: 'errors#not_found'
+  get '/500', to: 'errors#internal_server_error'
   end
 
 end
