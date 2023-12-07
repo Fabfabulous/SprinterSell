@@ -4,7 +4,7 @@
     <p class="p-header-agenda">What is happening today?</p>
   </div>
   <div class="display-date">
-      <h4 class="title-agenda"><i class="fa-regular fa-calendar-days"></i></h4>
+      <h4 class="title-agenda"><i class="fa-regular fa-calendar-days me-3"></i></h4>
       <h4 class="title-agenda"><%= Date.today.strftime('%d/%m/%Y') %></h4>
   </div>
 </div>
@@ -13,8 +13,8 @@
     <%= render meeting %>
   </div>
   <div class="fa-plus-center">
-    <button type="button" class="btn-primary-rounded" data-bs-toggle="modal" data-bs-target="#newMeetingModal">
-     <i class="fa-solid fa-plus"></i>
+    <button type="button" class="no-style btn-primary-rounded " data-bs-toggle="modal" data-bs-target="#newMeetingModal">
+     <i class="fa-solid fa-plus"></i> Add meeting
     </button>
   </div>
 <% end %>

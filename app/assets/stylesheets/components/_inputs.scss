@@ -1,0 +1,15 @@
+input[type=text] {
+  // input elements with type="text" attribute
+  // background-color: var(--dark-grey);
+  // color: var(--light-grey);
+}
+
+input[type=submit] {
+
+  background-color: var(--purple-primary);
+  color: var(--text-color-w);
+  width: 100%;
+  border-radius: 8px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}

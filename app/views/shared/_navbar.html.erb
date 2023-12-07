@@ -23,10 +23,13 @@
       <i class="fa-solid fa-pen-to-square me-2"></i>
       Notes
     </a>
-    <div class="btn-logout b-radius outline-gray mb-2">
-      <i class="fa-solid fa-arrow-right-from-bracket me-2 "></i>
-      <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-    </div>
+
+      <%= link_to destroy_user_session_path, method: :delete, class: "btn-logout" do %>
+        <i class="fa-solid fa-arrow-right-from-bracket me-2 "></i></i> Logout
+      <% end %>
+      <%# <i class="fa-solid fa-arrow-right-from-bracket me-2 "></i>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn-primary-home no-style" %>
+
   </div>
 </div>
 
