@@ -29,11 +29,11 @@
             <i class="fa-solid fa-address-book me-2"></i>
             <div class="all-contact-info">
               <div>
-                <p class="p-bold text-black"><%= company.contact.first_name %> <%= company.contact.last_name %></p>
+                <p class="p-bold text-black mb-2"><%= company.contact.first_name %> <%= company.contact.last_name %></p>
                 <p class="p-small text-black"><%= company.contact.function %></p>
               </div>
               <div class="right-side-contact">
-                <div class="display-info">
+                <div class="display-info mb-2">
                   <p class="p-small text-black"><%= company.contact.phone_number %></p>
                   <i class="fa-solid fa-phone icon ms-2"></i>
                 </div >
@@ -48,9 +48,10 @@
       <% end %>
       <% company.notes.each do |note| %>
         <div class="note-section">
-          <h4 class="mb-3"><%= note.title%></h4>
+          <h4 class="mb-3">Notes</h4>
           <div class="note-aperçu b-radius">
-            <p class="p-small-b ">created at 01/02/2025</p>
+            <p class="p-small-b"><%= note.title%></p>
+            <p class="p-small"> <%= note.created_at.strftime('%d/%m/%Y') %></p>
             <div class="aperçu">
               <p class="p-small text-black "><%= note.content%></p>
             </div>
@@ -61,7 +62,7 @@
       <div class="modal-footer">
         <a class="btn-primary" data-bs-toggle="modal" data-bs-target="#newMeetingModal<%= company.id %>">
          <i class="fa-solid fa-plus me-2"></i>
-            Add a meeting
+            Add to agenda
         </a>
       </div>
     </div>
