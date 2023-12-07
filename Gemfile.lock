@@ -174,6 +174,8 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mapbox-sdk (2.3.3)
+      rest-client (~> 2.1.0)
     marcel (1.0.2)
     matrix (0.4.2)
     mime-types (3.5.1)
@@ -340,6 +342,7 @@ DEPENDENCIES
   geocoder
   importmap-rails
   jbuilder
+  mapbox-sdk
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.2)

@@ -19,7 +19,7 @@ class PagesController < ApplicationController
           info_window_html: render_to_string(partial: "info_window", locals: { company: meeting_company })
         }
       )
-      Company.all.each do |company|
+      Company.where.not(id: @companies.pluck(:id)).each do |company|
         if company.latitude
           test_distance = haversine_distance(meeting_company.latitude, meeting_company.longitude, company.latitude, company.longitude)
           if test_distance < 0.4 && company != meeting_company
@@ -41,7 +41,8 @@ class PagesController < ApplicationController
     elsif params[:query].present?
       @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(10)
     else
-      @companies_all = Company.limit(100)
+      @companies_all = Company.where(status: 1).limit(20)
+      @companies_all += Company.where(status: 0).limit(80)
     end
 
 
