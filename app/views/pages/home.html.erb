@@ -19,7 +19,7 @@
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
     <div class="button-drive">
-      <%= link_to @waze_url, class: "btn-primary-drive" do %>
+      <%= link_to @waze_url, target: "_blank", class: "btn-primary-drive" do %>
           <i class="fa-solid fa-car me-2"></i> Let's Drive
       <% end %>
     </div>

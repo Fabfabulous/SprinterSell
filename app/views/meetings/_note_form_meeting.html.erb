@@ -1,5 +1,5 @@
 <div class="modal fade" id="noteModal<%= company.id if company.present? %>" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog max-w-modal ">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -22,12 +22,13 @@
               <% end %>
               <div class="info-purple">
                 <i class="fa-solid fa-info me-3"></i>
-                <p>Our Ai tool will help you rephrase or create a complete note or report with just some bullet point. Just tipe your note and click on <strong> rephrase </strong>! </p>
+                <p>Tips : Our AI tool will help you rephrase your note into a complete report with just some bullet point. Just tipe your note and click on <strong> rephrase </strong>! </p>
               </div>
               <%= f.input :title, placeholder: 'Meeting with Mr goodman' %>
-              <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here', input_html: { data: { notes_target: "note"} } %>
+              <%= f.input :content, as: :text, label: false, placeholder: 'Enter your note here', input_html: { rows: 5, data: { notes_target: "note"} } %>
               <button data-notes-target="helpButton" data-action="click->notes#rephrase" class="btn-ai mb-3">
-                <i class="fa-solid fa-robot me-2"></i>Rephrase
+                <i class="fa-solid fa-wand-magic-sparkles me-2"></i>
+                    Rephrase
               </button>
               <%= f.input :photos, as: :file, input_html: { multiple: true } %>
               <%= f.button :submit, 'Save', class: 'btn-primary-home' %>
