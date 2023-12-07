@@ -68,7 +68,6 @@ export default class extends Controller {
               }
             });
           })
-          console.log("TEDST",markerGeoLoc)
 
       });
     } else {

@@ -1,25 +1,30 @@
-<div class="carte-meeting">
-  <div class="bar <%= meeting.company.status %> "></div>
-  <div class="carte-meeting-hours" >
-    <p><%= meeting.date.strftime("%H:%M") %></p>
-    <p class="mt-2"><%= meeting.hour.strftime("%H:%M") %></p>
+<div>
+  <div class="carte-meeting">
+    <div class="bar <%= meeting.company.status %> "></div>
+    <div class="carte-meeting-hours" >
+      <p><%= meeting.date.strftime("%H:%M") %></p>
+      <p class="mt-2"><%= meeting.hour.strftime("%H:%M") %></p>
+    </div>
+    <div class="card-all-info">
+      <div class="carte-meeting-company">
+        <p class="p-bold"><%= meeting.company.name %></p>
+      </div>
+      <div class="carte-meeting-contact">
+        <% if meeting.contact.present? %>
+          <p class="p-bold"><%= "#{meeting.contact.first_name.capitalize} #{meeting.contact.last_name.capitalize}" %></p>
+          <p class="p-small"><%= meeting.contact.email %></p>
+          <p class="p-small"><%= meeting.contact.phone_number %></p>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="carte-meeting-company"><%= meeting.company.name %></div>
-  <div class="carte-meeting-contact">
-    <% if meeting.contact.present? %>
-      <p class="p-bold"><%= "#{meeting.contact.first_name.capitalize} #{meeting.contact.last_name.capitalize}" %></p>
-      <p class="p-small"><%= meeting.contact.email %></p>
-      <p class="p-small"><%= meeting.contact.phone_number %></p>
-    <% end %>
-  </div>
-  <div class="carte-meeting-actions">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#editMeetingModal" class="no-style fa-regular fa-pen-to-square" style="color: #ffd43b">
+  <div class="carte-meeting-actions ">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#noteModal<%= meeting.company.id %>" class="no-style fa-regular fa-clipboard button-action">
     </button>
-    <%# <button type= "button" >
-      <i class="fa-solid fa-trash" style="color: #ffd43b;"></i>
-    </button> %>
-    <%= button_to '', meeting_path(meeting), method: :delete, class:"no-style fa-solid fa-trash", style:"color: #ffd43b", data: { confirm: 'Are you sure you want to delete this meeting?' }  %>
-  </div>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#editMeetingModal" class="no-style fa-regular fa-pen-to-square button-action">
+    </button>
+      <%= button_to '', meeting_path(meeting), method: :delete, class:"no-style fa-solid fa-trash button-action", data: { confirm: 'Are you sure you want to delete this meeting?' }  %>
+    </div>
 </div>
 
 
@@ -36,3 +41,6 @@
     </div>
   </div>
 </div>
+
+
+<%= render partial: 'meetings/note_form_meeting',  locals: { company: meeting.company } %>

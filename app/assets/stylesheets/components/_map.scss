@@ -36,25 +36,37 @@
   background-color: var(--white);
   color: var(--text-color);
   text-decoration: none;
-  text-align: center;
-  border-radius: 8px;
-  border: 1px solid var(--text-color);
-  transition: color 0.6s ease;
-}
-
-.btn-filter:active {
-  color: var(--white);
-  background-color: var(--primary-purple);
+  width: 150px;
 }
 
 .button-map {
-  width: 350px;
-  height: 28px;
+  width: 100%;
+  text-align: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 16px;
   position: relative;
   z-index: 1;
   top: 5%;
   left: 23%;
+}
+
+.btn-color-prospect {
+  background-color: var(--secondary-orange);
+  font-size: bold;
+  border-radius: 8px;
+  border-color: 1px solid #222223;
+}
+.btn-color-client {
+  background-color: var(--secondary-green);
+  font-size: bold;
+  border-radius: 8px;
+  border-color: 1px solid #222223;
+}
+.btn-color-all {
+  background-color: var(--primary-purple);
+  font-size: bold;
+  border-radius: 8px;
+  border-color: 1px solid #222223;
 }

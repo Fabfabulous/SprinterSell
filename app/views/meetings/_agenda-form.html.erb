@@ -1,20 +1,22 @@
 
-<%= simple_form_for Meeting.new do |f| %>
-  <%= f.input :hour, as: :numeric, label: "Duration in minutes", placeholder: "15" %>
-  <%= f.input :title, placeholder: "Object of your meeting"%>
-  <%= f.input :content, placeholder: "Description of the meeting"%>
-  <%= f.input :date,
-            as: :string,
-            input_html: { data: { controller: "datepicker"},
-            value: f.object.date || Time.now } %>
-  <% if company_id.present? %>
-    <%= f.hidden_field :company_id, value: company_id %>
-  <% else %>
-    <div class="suggestion-container">
-      <% if @companies_all.nil? %>
-        <%= render partial: "company-list", locals: { companies: @companies_suggestion, type: "suggestion-card" }  %>
-      <% end %>
-    </div>
+<div class="mt-4">
+  <%= simple_form_for Meeting.new do |f| %>
+    <%= f.input :hour, as: :numeric, label: "Duration", placeholder: "35mn" %>
+    <%= f.input :title, placeholder: "Object of your meeting"%>
+    <%= f.input :content, placeholder: "Description of the meeting"%>
+    <%= f.input :date,
+              as: :string,
+              input_html: { data: { controller: "datepicker"},
+              value: f.object.date || Time.now } %>
+    <% if company_id.present? %>
+      <%= f.hidden_field :company_id, value: company_id %>
+    <% else %>
+      <div class="suggestion-container">
+        <% if @companies_all.nil? %>
+          <%= render partial: "company-list", locals: { companies: @companies_suggestion, type: "suggestion-card" }  %>
+        <% end %>
+      </div>
+    <% end %>
+    <%= f.submit class:""%>
   <% end %>
-  <%= f.submit class:""%>
-<% end %>
+</div>
