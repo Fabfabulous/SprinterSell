@@ -30,13 +30,14 @@
 
 .btn-filter {
   padding: 2px 16px;
-  margin: 0 4px;
-  flex-basis: 33.33%;
+  margin: 0 10px;
+  flex-basis: 25%;
   height: 100%;
-  background-color: var(--white);
-  color: var(--text-color);
+  color: var(--text-color-w);
   text-decoration: none;
-  width: 150px;
+  border: 1px solid #222223;
+  border-radius: 8px;
+  font-weight: bold;
 }
 
 .button-map {
@@ -48,25 +49,15 @@
   margin-bottom: 16px;
   position: relative;
   z-index: 1;
-  top: 5%;
-  left: 23%;
+  top: 8%;
 }
 
 .btn-color-prospect {
   background-color: var(--secondary-orange);
-  font-size: bold;
-  border-radius: 8px;
-  border-color: 1px solid #222223;
 }
 .btn-color-client {
   background-color: var(--secondary-green);
-  font-size: bold;
-  border-radius: 8px;
-  border-color: 1px solid #222223;
 }
 .btn-color-all {
   background-color: var(--primary-purple);
-  font-size: bold;
-  border-radius: 8px;
-  border-color: 1px solid #222223;
 }

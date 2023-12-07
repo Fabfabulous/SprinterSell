@@ -11,15 +11,15 @@
     <h4 class="title-agenda">Itinerary</h4>
     <p class="p-header-itinerary">Your roadmap for today</p>
   </div>
-    <div style="width: 100%; height: 75%; "
+    <div style="width: 100%; height: 90%; "
       data-controller="map"
       data-map-target="map"
       data-map-next-meeting-value= "<%=@gps_next_meeting.to_json%>"
       data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
-    <div class="button-map">
-      <%= link_to @waze_url, class: "btn-primary" do %>
+    <div class="button-drive">
+      <%= link_to @waze_url, class: "btn-primary-drive" do %>
           <i class="fa-solid fa-car me-2"></i> Let's Drive
       <% end %>
     </div>
