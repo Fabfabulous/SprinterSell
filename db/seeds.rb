@@ -68,7 +68,7 @@ loop do
   meeting.user = User.first
   meeting.company = Company.all.sample
   meeting.contact = Contact.all.sample if rand(2).zero?
-  sql_query = "date > :start AND date < :end AND hour > :start AND hour < :end"
+  sql_query = "date > :start AND date < :end OR hour > :start AND hour < :end"
   meeting.save! if Meeting.where(sql_query, start: meeting.date, end: meeting.hour).empty?
 
   p meeting
