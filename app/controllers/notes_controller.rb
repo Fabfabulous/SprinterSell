@@ -9,9 +9,9 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     if @note.save
-      @notice = "Note bien ajoutée"
+      @notice = "Note created"
     else
-      @notice = "Note pas ajoutée"
+      @notice = "Error creating the note"
     end
     redirect_to root_path, notice: @notice
   end

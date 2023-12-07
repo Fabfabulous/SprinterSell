@@ -34,6 +34,7 @@ class PagesController < ApplicationController
         end
       end
     end
+    @companies_suggestion = @companies_suggestion.uniq
   end
 
   def map
