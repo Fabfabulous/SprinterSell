@@ -22,9 +22,9 @@ class MeetingsController < ApplicationController
     sql_query = "date > :start AND date < :end OR hour > :start AND hour < :end"
     if Meeting.where(sql_query, start: @meeting.date, end: @meeting.hour).empty?
       if @meeting.save
-        redirect_to root_path
+        redirect_to root_path, notice: "Meeting successfully created !"
       else
-        render :new, status: :unprocessable_entity
+        redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
       end
     else
       redirect_to root_path, notice: "You already have a meeting at this time "

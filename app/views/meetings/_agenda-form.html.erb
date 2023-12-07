@@ -1,6 +1,6 @@
 
 <%= simple_form_for Meeting.new do |f| %>
-  <%= f.input :hour, as: :numeric, label: "Duration" %>
+  <%= f.input :hour, as: :numeric, label: "Duration in minutes", placeholder: "15" %>
   <%= f.input :title, placeholder: "Object of your meeting"%>
   <%= f.input :content, placeholder: "Description of the meeting"%>
   <%= f.input :date,
