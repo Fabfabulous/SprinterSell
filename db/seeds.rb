@@ -24,6 +24,8 @@ puts "!!!  START COMPANY/CONTACT CREATION  !!!"
   companie.save
 end
 
+
+
 Company.all.each do |company|
   puts "company status: #{company.status}"
   if company.status == "client"
