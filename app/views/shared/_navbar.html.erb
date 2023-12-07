@@ -9,12 +9,13 @@
       </div>
     </div>
     <hr/>
+
     <div class="home-button">
-        <%= link_to root_path(), class: "btn-primary-home" do %>
+        <%= link_to root_path(), class: "btn-primary-home#{'-active' if current_page?(root_path)}" do %>
         <i class="fa-solid fa-house me-2"></i> Home
         <% end %>
-        <%= link_to map_path, class: "btn-primary-home" do %>
-        <i class="fa-solid fa-map me-2"></i> Map
+        <%= link_to map_path, class: "btn-primary-home#{'-active' if current_page?(map_path)}" do %>
+        <i class="fa-solid fa-map me-2"></i> Explore
         <% end %>
     </div>
   </div>
@@ -24,8 +25,8 @@
       Notes
     </a>
 
-      <%= link_to destroy_user_session_path, method: :delete, class: "btn-logout" do %>
-        <i class="fa-solid fa-arrow-right-from-bracket me-2 "></i></i> Logout
+      <%# <%= link_to destroy_user_session_path, method: :delete, class: "btn-logout" do %>
+        <%# <i class="fa-solid fa-arrow-right-from-bracket me-2 "></i></i> Logout
       <% end %>
       <%# <i class="fa-solid fa-arrow-right-from-bracket me-2 "></i>
       <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn-primary-home no-style" %>

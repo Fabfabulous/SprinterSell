@@ -22,6 +22,17 @@
   border: 1px solid #F7F6F2;
 }
 
+.btn-primary-home-active {
+  padding: 8px 16px;
+  color: var(--text-color-w);
+  width: 100%;
+  text-align: center;
+  gap: 6px;
+  border-radius: 6px;
+  background-color: var(--primary-purple);
+
+}
+
 .btn-ai {
   padding: 8px 16px;
   color: var(--text-color);
@@ -44,10 +55,6 @@
   border: 1px solid #3f3f3f;
 }
 
-.btn-primary-home:active {
-  background-color: var(--primary-purple);
-  border: inherit;
-}
 
 .btn-primary-rounded {
   background-color: var(--primary-purple) ;

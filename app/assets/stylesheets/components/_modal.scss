@@ -13,7 +13,7 @@
 .modal-company-top {
 display: flex;
 width: 100%;
-margin-bottom: 16px;
+margin-bottom: 24px;
   &.client {
     border-left: 6px solid #63e6be ;
     border-radius: 6px;
@@ -118,4 +118,10 @@ margin-bottom: 16px;
 
 .header-modale {
   margin-bottom: 24px;
+}
+
+
+.modal {
+  width: 100% !important;
+
 }

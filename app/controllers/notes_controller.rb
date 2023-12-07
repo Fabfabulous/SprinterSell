@@ -26,7 +26,7 @@ class NotesController < ApplicationController
     client = OpenAI::Client.new
     chaptgpt_response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "I'm a business seller from a company ... Client sector - french classification NAF code: #{company.code_naf}. Can you rephrase the note of my last meeting, here are the main points: #{note}"}]
+      messages: [{ role: "user", content: "I'm a business seller from a company called Skool, we sel e-learning solution to schools. Can you rephrase the note of my last meeting, here are the main points: #{note}"}]
     })
     chaptgpt_response.dig("choices", 0, "message", "content")
   end
