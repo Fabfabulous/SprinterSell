@@ -2,14 +2,12 @@
 <div class="mt-4">
   <%= simple_form_for Meeting.new do |f| %>
     <%= f.input :hour, as: :numeric, label: "Duration", placeholder: "35mn" %>
-    <%= f.input :title, placeholder: "Object of your meeting"%>
+    <%= f.input :title, placeholder: "Object of your meeting" %>
     <%= f.input :content, placeholder: "Description of the meeting"%>
-    <%= f.input :date,
-              as: :string,
-              input_html: { data: { controller: "datepicker"},
-              value: f.object.date || Time.now } %>
+    <label for="meeting_date" >Date</label class="form-label string optional">
+    <input type="datetime-local" id="date" name="meeting[date]" value="meeting_date" class="form-control string optional" placeholder=<%=Time.now%> >
     <% if company_id.present? %>
-      <%= f.hidden_field :company_id, value: company_id %>
+      <%= f.hidden_field :company_id, value: company_id, required: true %>
     <% else %>
       <div class="suggestion-container">
         <% if @companies_all.nil? %>
