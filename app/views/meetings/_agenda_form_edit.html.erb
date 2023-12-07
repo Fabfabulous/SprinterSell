@@ -4,6 +4,7 @@
   <%= f.input :date,
             as: :string,
             input_html: { data: { controller: "datepicker"},
-            value: f.object.date || Time.now } %>
+            value: f.object.date || Time.now,
+            class: 'bigger-datepicker' } %>
   <%= f.submit class:""%>
 <% end %>
