@@ -18,6 +18,7 @@ class MeetingsController < ApplicationController
     duration = meeting_params[:hour]
     @meeting.hour = @meeting.date + duration.to_i.minutes
     @meeting.user = @user
+
     company = @meeting.company
     previous_meeting = @user.meetings.where('date >= ? AND date < ?', DateTime.current.beginning_of_day, @meeting.date)
                                     .order(:date)
@@ -28,28 +29,26 @@ class MeetingsController < ApplicationController
     previous_meeting_company = previous_meeting&.company
     next_meeting_company = next_meeting&.company
 
-    coordinates_first = [previous_meeting_company, company].map { |c| { latitude: c.latitude, longitude: c.longitude } } if previous_meeting_company
-    coordinates_last = [company, next_meeting_company].map { |c| { latitude: c.latitude, longitude: c.longitude } } if next_meeting_company
+    coordinates_first = [previous_meeting_company, company].map { |c| { latitude: c.latitude, longitude: c.longitude } } if previous_meeting_company && company
+    coordinates_last = [company, next_meeting_company].map { |c| { latitude: c.latitude, longitude: c.longitude } } if next_meeting_company && company
     # @company = Company.find(params[:id])
     # recuperer une company et lui associer un meeting
     Mapbox.access_token = ENV["MAPBOX_API_KEY"]
-    duration_itinerary_first = Mapbox::Directions.directions(coordinates_first, "driving-traffic").dig(0, "routes", 0, "duration")&.fdiv(60)&.round if previous_meeting_company
-    duration_itinerary_last = Mapbox::Directions.directions(coordinates_last, "driving-traffic").dig(0, "routes", 0, "duration")&.fdiv(60)&.round if next_meeting_company
-    meeting_date_departure = @meeting.date - duration_itinerary_first.minutes if previous_meeting_company
-    meeting_date_arrival = @meeting.hour + duration_itinerary_last.minutes if next_meeting_company
-    p meeting_date_arrival
-    p meeting_date_departure
+    duration_itinerary_first = Mapbox::Directions.directions(coordinates_first, "driving-traffic").dig(0, "routes", 0, "duration")&.fdiv(60)&.round if previous_meeting_company && company
+    duration_itinerary_last = Mapbox::Directions.directions(coordinates_last, "driving-traffic").dig(0, "routes", 0, "duration")&.fdiv(60)&.round if next_meeting_company && company
+    meeting_date_departure = @meeting.date - duration_itinerary_first.minutes if previous_meeting_company && company
+    meeting_date_arrival = @meeting.hour + duration_itinerary_last.minutes if next_meeting_company && company
     sql_query = "date > :start AND date < :end OR hour > :start AND hour < :end"
-    if current_user.meetings.where(sql_query, start: @meeting.date, end: @meeting.hour).empty?
+    if current_user.meetings.where(sql_query, start: @meeting.date, end: @meeting.hour).empty? && company
       if meeting_date_arrival && meeting_date_departure && ((meeting_date_arrival - meeting_date_departure) >= (next_meeting.date - previous_meeting.hour))
         redirect_to root_path, alert: "You don't have the time to go to that meeting! "
       elsif meeting_date_departure && (meeting_date_departure < previous_meeting.hour)
         @meeting.date = previous_meeting.hour + duration_itinerary_first.minutes
         @meeting.hour += duration_itinerary_first.minutes
         if @meeting.save
-        redirect_to root_path, alert: "You should arrive at this meeting at #{@meeting.date.strftime("%H:%M")}! "
+          redirect_to root_path, alert: "You should arrive at this meeting at #{@meeting.date.strftime("%H:%M")}! "
         else
-         redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
+          redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
         end
       elsif meeting_date_arrival && (meeting_date_arrival > next_meeting.date)
         @meeting.date -= meeting_date_arrival - next_meeting.date
@@ -57,15 +56,15 @@ class MeetingsController < ApplicationController
         if @meeting.save
           redirect_to root_path, alert: "we put your meeting at #{@meeting.date.strftime("%H:%M")} so you wont be late to see #{next_meeting_company.name}! "
         else
-          render :new, status: :unprocessable_entity
+          redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
         end
+      elsif @meeting.save
+        redirect_to root_path
       else
-        if @meeting.save
-          redirect_to root_path
-        else
-          render :new, status: :unprocessable_entity
-        end
+        redirect_to root_path, alert: @meeting.errors.full_messages.join(", ")
       end
+    elsif company.nil?
+      redirect_to root_path, alert: "Didn't select any company "
     else
       redirect_to root_path, alert: "You already have a meeting at this time "
     end
