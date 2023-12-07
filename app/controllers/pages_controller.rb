@@ -11,12 +11,14 @@ class PagesController < ApplicationController
     @travel_times = {}
     @markers = []
     @companies.each do |meeting_company|
+      marker_color = define_color(meeting_company)
       @compteur = 0
       @markers.push(
         {
           lat: meeting_company.latitude,
           lng: meeting_company.longitude,
-          info_window_html: render_to_string(partial: "info_window", locals: { company: meeting_company })
+          info_window_html: render_to_string(partial: "info_window", locals: { company: meeting_company }),
+          color: marker_color
         }
       )
       Company.where.not(id: @companies.pluck(:id)).each do |company|
@@ -37,9 +39,9 @@ class PagesController < ApplicationController
   def map
     @markers = []
     if params[:status].present?
-      @companies_all = Company.where('status = ? ', params[:status]).limit(10)
+      @companies_all = Company.where('status = ? ', params[:status]).limit(20)
     elsif params[:query].present?
-      @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(10)
+      @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(50)
     else
       @companies_all = Company.where(status: 1).limit(20)
       @companies_all += Company.where(status: 0).limit(80)
@@ -49,17 +51,7 @@ class PagesController < ApplicationController
     @companies_all.each do |company|
       next unless company.latitude?
 
-      marker_color = case company.status
-      when 'prospect'
-        '#FF8787 '
-      when 'client'
-        '#63E6bE'
-      when 'to_visit'
-        '#74C0FC'
-      else
-        '#FFD43B'
-      end
-
+      marker_color = define_color(company)
       @markers.push(
         {
           lat: company.latitude,
@@ -111,5 +103,18 @@ class PagesController < ApplicationController
     distance = r * c
 
     return distance
+  end
+
+  def define_color(company)
+    case company.status
+      when 'prospect'
+        '#FF8787 '
+      when 'client'
+        '#63E6bE'
+      when 'to_visit'
+        '#74C0FC'
+      else
+        '#FFD43B'
+    end
   end
 end

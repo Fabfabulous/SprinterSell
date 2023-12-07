@@ -4,7 +4,8 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }
   # Settings specified here will take precedence over those in config/application.rb.
   config.hosts.clear
-  config.hosts << "honest-cups-scream.loca.lt"
+
+  config.hosts << "smooth-cycles-spend.loca.lt"
   config.hosts << "localhost:3000"
 
   # In the development environment your application's code is reloaded any time
