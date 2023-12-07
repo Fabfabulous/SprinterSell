@@ -3,6 +3,7 @@ class CompaniesapiJob < ApplicationJob
   require 'open-uri'
 
   def perform
+    taille = [100, 200, 400, 500]
     naf = "85.59A"
     zipcode = 69_001
     regex = /^6900\d$/
@@ -23,6 +24,7 @@ class CompaniesapiJob < ApplicationJob
                 city: result[:siege][:libelle_commune],
                 latitude: result[:siege][:latitude],
                 longitude: result[:siege][:longitude],
+                company_size: taille.sample,
                 status: 0,
                 code_naf: naf,
                 siren: result[:siren]
