@@ -16,7 +16,7 @@ class CompaniesapiJob < ApplicationJob
         response = JSON.parse(URI.open(url).read, symbolize_names: true)
         response[:results].each do |result|
           unless  result[:siege][:code_postal].nil?
-            if Company.find_by(siren: result[:siren]).nil? && result[:siege][:code_postal].to_s.match(regex)
+            if Company.find_by(siren: result[:siren]).nil? && result[:siege][:code_postal].to_s.match(regex) && (result[:nom_complet].length < 20)
               company = Company.new({
                 name: result[:nom_complet],
                 address: result[:siege][:adresse],
