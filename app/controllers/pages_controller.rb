@@ -40,7 +40,7 @@ class PagesController < ApplicationController
   def map
     @markers = []
     if params[:status].present?
-      @companies_all = Company.where('status = ? ', params[:status]).limit(20)
+      @companies_all = Company.where('status = ? ', params[:status]).limit(100)
     elsif params[:query].present?
       @companies_all = Company.where('name ILIKE ?', "%#{params[:query]}%").limit(50)
     else
