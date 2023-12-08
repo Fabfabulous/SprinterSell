@@ -5,7 +5,7 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.hosts.clear
 
-  config.hosts << "bright-tools-wave.loca.lt"
+  config.hosts << "giant-vans-double.loca.lt"
   config.hosts << "localhost:3000"
 
   # In the development environment your application's code is reloaded any time
