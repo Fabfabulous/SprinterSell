@@ -43,8 +43,8 @@ Company.all.each do |company|
 end
 p "création user Test"
 user = User.new(
-  first_name: "Test",
-  last_name: "TEST",
+  first_name: "Rémi",
+  last_name: "Lavigne",
   email: "test@gmail.com",
   password: "password",
   phone_number: "+33638493020",
@@ -79,5 +79,21 @@ loop do
     break if Meeting.count == 14
   end
 end
+
+taille = [100, 200, 400, 500]
+p "create wagon"
+company = Company.new({
+  name: "Le Wagon",
+  address: "20 rue des capucins",
+  zip_code: "69001",
+  city: "LYON 01",
+  latitude: 45.769649067482305,
+  longitude: 4.834794894874223,
+  company_size: taille.sample,
+  status: 0,
+  code_naf: "85.59A",
+  siren: "794949917"
+  })
+company.save
 
 puts "!!!  FINISH COMPANY/CONTACT/MEETINGS CREATION  !!!"
